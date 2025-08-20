@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 public class Angus {
-    static String HORIZONTAL_LINE = "\t____________________________________________________________";
-    static String LINE_SEPARATOR = "\n\t";
+    private final static String HORIZONTAL_LINE =
+            "\t____________________________________________________________";
+    private final static String LINE_SEPARATOR = "\n\t";
 
     public static String angusResponse(String text) {
         return HORIZONTAL_LINE + LINE_SEPARATOR + text + "\n" + HORIZONTAL_LINE;
