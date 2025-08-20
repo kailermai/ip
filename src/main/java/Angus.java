@@ -5,12 +5,12 @@ public class Angus {
         String horizontalLine = "\t____________________________________________________________";
 
         String greetings = horizontalLine
-                + "\n\tHello! I'm Angus\n"
-                + "\tWhat can I do for you?\n"
+                + "\n\tHello! I'm Angus o_O\n"
+                + "\tWhat can I do for you today?\n"
                 + horizontalLine;
 
         String goodbye = horizontalLine
-                + "\n\tBye. Hope to see you again soon!\n"
+                + "\n\tGoodbye. Hope to see you again soon!\n"
                 + horizontalLine;
 
         Scanner input = new Scanner(System.in);
