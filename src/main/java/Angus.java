@@ -1,10 +1,16 @@
 public class Angus {
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        String horizontalLine = "____________________________________________________________\n";
+
+        String greetings = horizontalLine
+                + "Hello! I'm Angus\n"
+                + "What can I do for you?";
+
+        String goodbye = horizontalLine
+                + "Bye. Hope to see you again soon!\n"
+                + horizontalLine;
+
+        System.out.println(greetings);
+        System.out.println(goodbye);
     }   
 }
