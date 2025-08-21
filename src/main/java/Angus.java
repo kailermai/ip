@@ -59,7 +59,26 @@ public class Angus {
                         System.out.println(angusResponse(list.toString()));
                         break;
                     case "mark":
-                        taskNum = Integer.parseInt(commandList[1]) - 1;
+                        if (commandList.length != 2) {
+                            throw new AngusException("Wrong usage of mark!" +
+                                    LINE_SEPARATOR +
+                                    "Usage: mark [task number]");
+                        }
+
+                        // Handles case: mark [non integer]
+                        try {
+                            taskNum = Integer.parseInt(commandList[1]) - 1;
+                        } catch (NumberFormatException e) {
+                            throw new AngusException("Wrong usage of mark!" +
+                                    LINE_SEPARATOR +
+                                    "Usage: mark [task number]");
+                        }
+
+                        if (taskNum >= taskList.toArray().length) {
+                            throw new AngusException("Task does not exist!" +
+                                    LINE_SEPARATOR +
+                                    "Usage: mark [task number]");
+                        }
                         curTask = taskList.get(taskNum);
                         result = curTask.markDone();
                         if (result) {
@@ -74,7 +93,25 @@ public class Angus {
                         System.out.println(angusResponse(message));
                         break;
                     case "unmark":
-                        taskNum = Integer.parseInt(commandList[1]) - 1;
+                        if (commandList.length != 2) {
+                            throw new AngusException("Wrong usage of unmark!" +
+                                    LINE_SEPARATOR +
+                                    "Usage: unmark [task number]");
+                        }
+
+                        // Handles case: unmark [non integer]
+                        try {
+                            taskNum = Integer.parseInt(commandList[1]) - 1;
+                        } catch (NumberFormatException e) {
+                            throw new AngusException("Wrong usage of unmark!" +
+                                    LINE_SEPARATOR +
+                                    "Usage: unmark [task number]");
+                        }
+                        if (taskNum >= taskList.toArray().length) {
+                            throw new AngusException("Task does not exist!" +
+                                    LINE_SEPARATOR +
+                                    "Usage: unmark [task number]");
+                        }
                         curTask = taskList.get(taskNum);
                         result = curTask.markNotDone();
                         if (result) {
