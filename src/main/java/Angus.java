@@ -34,6 +34,7 @@ public class Angus {
             int taskNum;
             Task curTask;
             boolean result;
+            StringBuilder endDate;
 
             switch (mainCommand) {
                 case "bye":
@@ -97,11 +98,35 @@ public class Angus {
                             + "You now have " + taskList.toArray().length + " tasks in the list");
                     System.out.println(message);
                     break;
+                case "deadline":
+                    int j = 1;
+                    StringBuilder deadlineName = new StringBuilder();
+                    endDate = new StringBuilder();
+                    while (j < commandList.length && !commandList[j].equals("/by")) {
+                        deadlineName.append(" ").append(commandList[j]);
+                        j++;
+                    }
+
+                    j++;
+
+                    while (j < commandList.length) {
+                        endDate.append(" ").append(commandList[j]);
+                        j++;
+                    }
+                    Deadline newDeadline = new Deadline(deadlineName.toString(), endDate.toString());
+                    taskList.add(newDeadline);
+                    message = angusResponse("Angus has added this deadline:"
+                            + LINE_SEPARATOR
+                            + "\t" + newDeadline
+                            + LINE_SEPARATOR
+                            + "You now have " + taskList.toArray().length + " tasks in the list");
+                    System.out.println(message);
+                    break;
                 case "event":
                     int i = 1;
                     StringBuilder eventName = new StringBuilder();
                     StringBuilder startDate = new StringBuilder();
-                    StringBuilder endDate = new StringBuilder();
+                    endDate = new StringBuilder();
                     while (i < commandList.length && !commandList[i].equals("/from")) {
                         eventName.append(" ").append(commandList[i]);
                         i++;
