@@ -227,6 +227,37 @@ public class Angus {
                                 "You now have " + taskList.toArray().length + " tasks in the list");
                         System.out.println(message);
                         break;
+                    case "delete":
+                        if (commandList.length != 2) {
+                            throw new AngusException("Wrong usage of delete!" +
+                                    LINE_SEPARATOR +
+                                    "Usage: delete [task number]");
+                        }
+
+                        // Handles case: delete [non integer]
+                        try {
+                            taskNum = Integer.parseInt(commandList[1]) - 1;
+                        } catch (NumberFormatException e) {
+                            throw new AngusException("Wrong usage of delete!" +
+                                    LINE_SEPARATOR +
+                                    "Usage: delete [task number]");
+                        }
+
+                        if (taskNum >= taskList.toArray().length) {
+                            throw new AngusException("Task does not exist!" +
+                                    LINE_SEPARATOR +
+                                    "Usage: delete [task number]");
+                        }
+                        Task removedTask = taskList.get(taskNum);
+                        taskList.remove(taskNum);
+                        message = "All done! Angus has removed this task:" +
+                                LINE_SEPARATOR +
+                                "\t" + removedTask +
+                                LINE_SEPARATOR +
+                                "You now have " + taskList.toArray().length + " tasks in the list";
+
+                        System.out.println(angusResponse(message));
+                        break;
                     default:
                         throw new AngusException("Angus does not know what that means :<" +
                                 LINE_SEPARATOR +
@@ -238,7 +269,9 @@ public class Angus {
                                 LINE_SEPARATOR +
                                 "deadline"+
                                 LINE_SEPARATOR +
-                                "event");
+                                "event" +
+                                LINE_SEPARATOR +
+                                "delete");
                 }
             } catch (AngusException e) {
                 message = angusResponse("[ERROR] " + e.getMessage());
