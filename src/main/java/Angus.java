@@ -30,6 +30,10 @@ public class Angus {
             command = input.nextLine();
             String[] commandList = command.split(" ");
             String mainCommand = commandList[0];
+            String message;
+            int taskNum;
+            Task curTask;
+            boolean result;
 
             switch (mainCommand) {
                 case "bye":
@@ -39,7 +43,7 @@ public class Angus {
                     StringBuilder list = new StringBuilder();
                     list.append("Here are your tasks:\n\t");
                     for (int i  = 0; i < taskList.size(); i++) {
-                        Task curTask = taskList.get(i);
+                        curTask = taskList.get(i);
                         list.append(i + 1);
                         list.append(".");
                         list.append("[").append(curTask.getStatusIcon()).append("] ");
@@ -51,20 +55,42 @@ public class Angus {
                     System.out.println(angusResponse(list.toString()));
                     break;
                 case "mark":
-                    int taskNum = Integer.parseInt(commandList[1]);
-                    boolean result = taskList.get(taskNum).markDone();
+                    taskNum = Integer.parseInt(commandList[1]) - 1;
+                    curTask = taskList.get(taskNum);
+                    result = curTask.markDone();
                     if (result) {
-
+                        message = "Angus has marked this task as done!"
+                                + LINE_SEPARATOR
+                                + "\t[" + curTask.getStatusIcon() + "] " + curTask.description;
                     } else {
-
+                        message = "This task is already marked as done!"
+                                + LINE_SEPARATOR
+                                + "\t[" + curTask.getStatusIcon() + "] " + curTask.description;
                     }
+                    System.out.println(angusResponse(message));
+                    break;
+                case "unmark":
+                    taskNum = Integer.parseInt(commandList[1]) - 1;
+                    curTask = taskList.get(taskNum);
+                    result = curTask.markNotDone();
+                    if (result) {
+                        message = "Angus has marked this task as NOT done!"
+                                + LINE_SEPARATOR
+                                + "\t[" + curTask.getStatusIcon() + "] " + curTask.description;
+                    } else {
+                        message = "This task is already marked as NOT done!"
+                                + LINE_SEPARATOR
+                                + "\t[" + curTask.getStatusIcon() + "] " + curTask.description;
+                    }
+                    System.out.println(angusResponse(message));
+                    break;
                 default:
-                    taskList.add(new Task(command));
-                    String message = angusResponse("added: " + command);
+                    taskList.add(new Task(mainCommand));
+                    message = angusResponse("added: " + command);
                     System.out.println(message);
                     break;
             }
         }
         System.out.println(goodbye);
-    }   
+    }
 }

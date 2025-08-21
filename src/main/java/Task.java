@@ -12,8 +12,21 @@ public class Task {
     }
 
     public boolean markDone() {
-        this.isDone = !this.isDone;
-        return this.isDone;
+        if (this.isDone) {
+            return false;
+        } else {
+            this.isDone = true;
+            return true;
+        }
+    }
+
+    public boolean markNotDone() {
+        if (!this.isDone) {
+            return false;
+        } else {
+            this.isDone = false;
+            return true;
+        }
     }
 
     public String getStatusIcon() {
