@@ -156,8 +156,7 @@ public class Angus {
                     System.out.println(message);
                     break;
                 default:
-                    taskList.add(new Task(mainCommand));
-                    message = angusResponse("added: " + command);
+                    message = angusResponse("[ERROR] Angus does not know what that means :<");
                     System.out.println(message);
                     break;
             }
