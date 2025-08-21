@@ -86,7 +86,11 @@ public class Angus {
                 case "todo":
                     ToDo newTodo = new ToDo(commandList[1]);
                     taskList.add(newTodo);
-                    message = angusResponse("Angus has added this task: " + command);
+                    message = angusResponse("Angus has added this task:"
+                            + LINE_SEPARATOR
+                            + "\t" + newTodo
+                            + LINE_SEPARATOR
+                            + "You now have " + taskList.toArray().length + " tasks in the list");
                     System.out.println(message);
                     break;
                 default:
