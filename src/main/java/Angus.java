@@ -84,7 +84,14 @@ public class Angus {
                     System.out.println(angusResponse(message));
                     break;
                 case "todo":
-                    ToDo newTodo = new ToDo(commandList[1]);
+                    StringBuilder todoName = new StringBuilder();
+                    for (int i = 1; i < commandList.length; i++) {
+                        todoName.append(commandList[i]);
+                        if (i < commandList.length - 1) {
+                            todoName.append(" ");
+                        }
+                    }
+                    ToDo newTodo = new ToDo(todoName.toString());
                     taskList.add(newTodo);
                     message = angusResponse("Angus has added this task:"
                             + LINE_SEPARATOR
@@ -93,6 +100,8 @@ public class Angus {
                             + "You now have " + taskList.toArray().length + " tasks in the list");
                     System.out.println(message);
                     break;
+                case "event":
+
                 default:
                     taskList.add(new Task(mainCommand));
                     message = angusResponse("added: " + command);
