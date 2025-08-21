@@ -46,8 +46,7 @@ public class Angus {
                         curTask = taskList.get(i);
                         list.append(i + 1);
                         list.append(".");
-                        list.append(curTask.getStatusIcon()).append(" ");
-                        list.append(curTask.getDescription());
+                        list.append(curTask);
                         if (i < taskList.size() - 1){
                             list.append(LINE_SEPARATOR); // prevent empty line at the end
                         }
@@ -61,11 +60,11 @@ public class Angus {
                     if (result) {
                         message = "Angus has marked this task as done!"
                                 + LINE_SEPARATOR
-                                + "\t" + curTask.getStatusIcon() + " " + curTask.description;
+                                + "\t" + curTask;
                     } else {
                         message = "This task is already marked as done!"
                                 + LINE_SEPARATOR
-                                + "\t" + curTask.getStatusIcon() + " " + curTask.description;
+                                + "\t" + curTask;
                     }
                     System.out.println(angusResponse(message));
                     break;
@@ -76,13 +75,19 @@ public class Angus {
                     if (result) {
                         message = "Angus has marked this task as NOT done!"
                                 + LINE_SEPARATOR
-                                + "\t" + curTask.getStatusIcon() + " " + curTask.description;
+                                + "\t" + curTask;
                     } else {
                         message = "This task is already marked as NOT done!"
                                 + LINE_SEPARATOR
-                                + "\t" + curTask.getStatusIcon() + " " + curTask.description;
+                                + "\t" + curTask;
                     }
                     System.out.println(angusResponse(message));
+                    break;
+                case "todo":
+                    ToDo newTodo = new ToDo(commandList[1]);
+                    taskList.add(newTodo);
+                    message = angusResponse("Angus has added this task: " + command);
+                    System.out.println(message);
                     break;
                 default:
                     taskList.add(new Task(mainCommand));
