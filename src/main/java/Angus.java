@@ -28,24 +28,36 @@ public class Angus {
 
         while (running) {
             command = input.nextLine();
+            String[] commandList = command.split(" ");
+            String mainCommand = commandList[0];
 
-            switch (command) {
+            switch (mainCommand) {
                 case "bye":
                     running = false;
                     break;
-
                 case "list":
                     StringBuilder list = new StringBuilder();
+                    list.append("Here are your tasks:\n\t");
                     for (int i  = 0; i < taskList.size(); i++) {
+                        Task curTask = taskList.get(i);
                         list.append(i + 1);
-                        list.append(". ");
-                        list.append(taskList.get(i).getDescription());
+                        list.append(".");
+                        list.append("[").append(curTask.getStatusIcon()).append("] ");
+                        list.append(curTask.getDescription());
                         if (i < taskList.size() - 1){
                             list.append(LINE_SEPARATOR); // prevent empty line at the end
                         }
                     }
                     System.out.println(angusResponse(list.toString()));
                     break;
+                case "mark":
+                    int taskNum = Integer.parseInt(commandList[1]);
+                    boolean result = taskList.get(taskNum).markDone();
+                    if (result) {
+
+                    } else {
+
+                    }
                 default:
                     taskList.add(new Task(command));
                     String message = angusResponse("added: " + command);
