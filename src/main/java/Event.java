@@ -1,9 +1,10 @@
 public class Event extends Task {
-    String deadline;
+    String startDate, endDate;
 
-    public Event(String description, String deadline) {
+    public Event(String description, String startDate, String endDate) {
         super(description);
-        this.deadline = deadline;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     @Override
@@ -13,6 +14,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + this.deadline;
+        return super.toString() + " (from:" + this.startDate + " to:" + this.endDate + ")";
     }
 }

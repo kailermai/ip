@@ -86,10 +86,7 @@ public class Angus {
                 case "todo":
                     StringBuilder todoName = new StringBuilder();
                     for (int i = 1; i < commandList.length; i++) {
-                        todoName.append(commandList[i]);
-                        if (i < commandList.length - 1) {
-                            todoName.append(" ");
-                        }
+                        todoName.append(" ").append(commandList[i]);
                     }
                     ToDo newTodo = new ToDo(todoName.toString());
                     taskList.add(newTodo);
@@ -101,7 +98,38 @@ public class Angus {
                     System.out.println(message);
                     break;
                 case "event":
+                    int i = 1;
+                    StringBuilder eventName = new StringBuilder();
+                    StringBuilder startDate = new StringBuilder();
+                    StringBuilder endDate = new StringBuilder();
+                    while (i < commandList.length && !commandList[i].equals("/from")) {
+                        eventName.append(" ").append(commandList[i]);
+                        i++;
+                    }
 
+                    i++;
+
+                    while (i < commandList.length && !commandList[i].equals("/to")){
+                        startDate.append(" ").append(commandList[i]);
+                        i++;
+                    }
+
+                    i++;
+
+                    while (i < commandList.length) {
+                        endDate.append(" ").append(commandList[i]);
+                        i++;
+                    }
+                    Event newEvent = new Event(eventName.toString(), startDate.toString(),
+                        endDate.toString());
+                    taskList.add(newEvent);
+                    message = angusResponse("Angus has added this event:"
+                            + LINE_SEPARATOR
+                            + "\t" + newEvent
+                            + LINE_SEPARATOR
+                            + "You now have " + taskList.toArray().length + " tasks in the list");
+                    System.out.println(message);
+                    break;
                 default:
                     taskList.add(new Task(mainCommand));
                     message = angusResponse("added: " + command);
