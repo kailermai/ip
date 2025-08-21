@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,6 +10,17 @@ public class Angus {
 
     public static String angusResponse(String text) {
         return "\t" + HORIZONTAL_LINE + LINE_SEPARATOR + text + LINE_SEPARATOR + HORIZONTAL_LINE;
+    }
+
+    enum Commands {
+        bye,
+        mark,
+        unmark,
+        list,
+        todo,
+        deadline,
+        event,
+        delete
     }
 
     public static void main(String[] args) {
@@ -29,7 +41,6 @@ public class Angus {
         while (running) {
             command = input.nextLine();
             String[] commandList = command.split(" ");
-            String mainCommand = commandList[0];
             String message;
             int taskNum;
             Task curTask;
@@ -37,11 +48,12 @@ public class Angus {
             StringBuilder endDate;
 
             try {
+                Commands mainCommand = Commands.valueOf(commandList[0]);
                 switch (mainCommand) {
-                    case "bye":
+                    case bye:
                         running = false;
                         break;
-                    case "list":
+                    case list:
                         if (taskList.isEmpty()) {
                             throw new AngusException("Your task list is empty!");
                         }
@@ -58,7 +70,7 @@ public class Angus {
                         }
                         System.out.println(angusResponse(list.toString()));
                         break;
-                    case "mark":
+                    case mark:
                         if (commandList.length != 2) {
                             throw new AngusException("Wrong usage of mark!" +
                                     LINE_SEPARATOR +
@@ -92,7 +104,7 @@ public class Angus {
                         }
                         System.out.println(angusResponse(message));
                         break;
-                    case "unmark":
+                    case unmark:
                         if (commandList.length != 2) {
                             throw new AngusException("Wrong usage of unmark!" +
                                     LINE_SEPARATOR +
@@ -125,7 +137,7 @@ public class Angus {
                         }
                         System.out.println(angusResponse(message));
                         break;
-                    case "todo":
+                    case todo:
                         StringBuilder todoName = new StringBuilder();
                         for (int i = 1; i < commandList.length; i++) {
                             todoName.append(" ").append(commandList[i]);
@@ -144,7 +156,7 @@ public class Angus {
                                 "You now have " + taskList.toArray().length + " tasks in the list");
                         System.out.println(message);
                         break;
-                    case "deadline":
+                    case deadline:
                         int j = 1;
                         StringBuilder deadlineName = new StringBuilder();
                         endDate = new StringBuilder();
@@ -179,7 +191,7 @@ public class Angus {
                                 "You now have " + taskList.toArray().length + " tasks in the list");
                         System.out.println(message);
                         break;
-                    case "event":
+                    case event:
                         int i = 1;
                         StringBuilder eventName = new StringBuilder();
                         StringBuilder startDate = new StringBuilder();
@@ -227,7 +239,7 @@ public class Angus {
                                 "You now have " + taskList.toArray().length + " tasks in the list");
                         System.out.println(message);
                         break;
-                    case "delete":
+                    case delete:
                         if (commandList.length != 2) {
                             throw new AngusException("Wrong usage of delete!" +
                                     LINE_SEPARATOR +
@@ -258,22 +270,16 @@ public class Angus {
 
                         System.out.println(angusResponse(message));
                         break;
-                    default:
-                        throw new AngusException("Angus does not know what that means :<" +
-                                LINE_SEPARATOR +
-                                "Try any of the following commands:" +
-                                LINE_SEPARATOR +
-                                "list" +
-                                LINE_SEPARATOR +
-                                "todo"+
-                                LINE_SEPARATOR +
-                                "deadline"+
-                                LINE_SEPARATOR +
-                                "event" +
-                                LINE_SEPARATOR +
-                                "delete");
                 }
-            } catch (AngusException e) {
+            } catch (IllegalArgumentException e) {
+                message = "Angus does not know what that means :<" +
+                        LINE_SEPARATOR +
+                        "Try any of the following commands:" +
+                        LINE_SEPARATOR +
+                        Arrays.asList(Commands.values());
+                System.out.println(angusResponse(message));
+            }
+            catch (AngusException e) {
                 message = angusResponse("[ERROR] " + e.getMessage());
                 System.out.println(message);
             }
