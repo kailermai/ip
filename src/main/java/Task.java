@@ -1,14 +1,14 @@
 public class Task {
-    private final String taskName;
+    protected final String description;
     private boolean isDone;
 
-    public Task(String taskName) {
-        this.taskName = taskName;
+    public Task(String description) {
+        this.description = description;
         this.isDone = false;
     }
 
-    public String getTaskName() {
-        return this.taskName;
+    public String getDescription() {
+        return this.description;
     }
 
     public boolean markDone() {

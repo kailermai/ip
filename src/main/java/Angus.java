@@ -33,12 +33,13 @@ public class Angus {
                 case "bye":
                     running = false;
                     break;
+
                 case "list":
                     StringBuilder list = new StringBuilder();
                     for (int i  = 0; i < taskList.size(); i++) {
                         list.append(i + 1);
                         list.append(". ");
-                        list.append(taskList.get(i).getTaskName());
+                        list.append(taskList.get(i).getDescription());
                         if (i < taskList.size() - 1){
                             list.append(LINE_SEPARATOR); // prevent empty line at the end
                         }
