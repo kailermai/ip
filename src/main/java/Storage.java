@@ -22,23 +22,26 @@ public class Storage {
                 Task.TaskTypes taskType = Task.TaskTypes.valueOf(taskDetails[0]);
                 switch (taskType) {
                 case T:
-                    ToDo toDo = new ToDo(taskDetails[2]);
+                    ToDo toDo = new ToDo(" " + taskDetails[2]);
                     if (taskDetails[1].equals("1")) {
                         toDo.markDone();
                     }
                     tmp.add(toDo);
+                    break;
                 case D:
-                    Deadline deadline = new Deadline(taskDetails[2], taskDetails[3]);
+                    Deadline deadline = new Deadline(" " + taskDetails[2], " " + taskDetails[3]);
                     if (taskDetails[1].equals("1")) {
                         deadline.markDone();
                     }
                     tmp.add(deadline);
+                    break;
                 case E:
-                    Event event = new Event(taskDetails[2], taskDetails[3], taskDetails[4]);
+                    Event event = new Event(" " + taskDetails[2], " " + taskDetails[3], " " + taskDetails[4]);
                     if (taskDetails[1].equals("1")) {
                         event.markDone();
                     }
                     tmp.add(event);
+                    break;
                 }
             }
             return tmp;

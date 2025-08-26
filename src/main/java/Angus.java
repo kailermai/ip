@@ -1,6 +1,6 @@
 public class Angus {
     private final Ui ui;
-    private final TaskList tasks;
+    private TaskList tasks;
     private final Parser parser;
     private Storage storage;
 
@@ -35,6 +35,6 @@ public class Angus {
     }
 
     public static void main(String[] args) {
-        new Angus("data/tasks.txt").run();
+        new Angus("data/Angus.txt").run();
     }
 }

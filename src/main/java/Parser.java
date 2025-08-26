@@ -17,8 +17,10 @@ public class Parser {
         switch (mainCommand) {
         case bye:
             return new ByeCommand(ui);
+            // no break because return prevents fallthrough
         case list:
             return new ListCommand(tasks);
+            // no break because return prevents fallthrough
         case mark:
             if (commandList.length != 2) {
                 throw new AngusException("Wrong usage of mark!" +
@@ -34,6 +36,7 @@ public class Parser {
                         "Usage: mark [task number]");
             }
             return new MarkCommand(tasks, taskNum);
+            // no break because return prevents fallthrough
         case unmark:
             if (commandList.length != 2) {
                 throw new AngusException("Wrong usage of unmark!" +
@@ -50,6 +53,7 @@ public class Parser {
                         "Usage: unmark [task number]");
             }
             return new UnmarkCommand(tasks, taskNum);
+            // no break because return prevents fallthrough
         case todo:
             StringBuilder todoName = new StringBuilder();
             for (int i = 1; i < commandList.length; i++) {
@@ -61,6 +65,7 @@ public class Parser {
                         "Usage: todo [description]");
             }
             return new TodoCommand(tasks, todoName.toString());
+            // no break because return prevents fallthrough
         case deadline:
             int j = 1;
             StringBuilder deadlineName = new StringBuilder();
@@ -87,6 +92,7 @@ public class Parser {
                         "Usage: deadline [description] /by [due date/time]");
             }
             return new DeadlineCommand(tasks, deadlineName.toString(), endDate.toString());
+            // no break because return prevents fallthrough
         case event:
             int i = 1;
             StringBuilder eventName = new StringBuilder();
@@ -125,6 +131,7 @@ public class Parser {
                         "Usage: event [description] /from [start date/time] /to [end date/time]");
             }
             return new EventCommand(tasks, eventName.toString(), startDate.toString(), endDate.toString());
+            // no break because return prevents fallthrough
         case delete:
             if (commandList.length != 2) {
                 throw new AngusException("Wrong usage of delete!" +
@@ -141,6 +148,7 @@ public class Parser {
                         "Usage: delete [task number]");
             }
             return new DeleteCommand(tasks, taskNum);
+            // no break because return prevents fallthrough
         default:
             throw new IllegalArgumentException();
         }
