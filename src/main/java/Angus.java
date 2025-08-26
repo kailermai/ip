@@ -2,10 +2,16 @@ public class Angus {
     private final Ui ui;
     private final TaskList tasks;
     private final Parser parser;
+    private Storage storage;
 
-    public Angus() {
+    public Angus(String filePath) {
+        this.storage = new Storage(filePath);
         this.ui = new Ui();
-        this.tasks = new TaskList(ui);
+        try {
+            this.tasks = new TaskList(ui, storage.load());
+        } catch (AngusException e) {
+            this.tasks = new TaskList(ui);
+        }
         this.parser = new Parser(ui, tasks);
     }
 
@@ -29,6 +35,6 @@ public class Angus {
     }
 
     public static void main(String[] args) {
-        new Angus().run();
+        new Angus("data/tasks.txt").run();
     }
 }

@@ -11,6 +11,11 @@ public class TaskList {
         this.ui = ui;
     }
 
+    public TaskList(Ui ui, List<Task> taskList) {
+        this.taskList = taskList;
+        this.ui = ui;
+    }
+
     public void getTaskList() throws AngusException {
         if (taskList.isEmpty()) {
             throw new AngusException("Your task list is empty!");

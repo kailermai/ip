@@ -2,6 +2,12 @@ public class Task {
     protected final String description;
     private boolean isDone;
 
+    enum TaskTypes {
+        E,
+        T,
+        D,
+    }
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
