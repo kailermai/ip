@@ -1,3 +1,12 @@
+package angus;
+
+import angus.exception.AngusException;
+import angus.storage.Storage;
+import angus.task.TaskList;
+import angus.ui.Parser;
+import angus.ui.Ui;
+import angus.command.Commands;
+
 public class Angus {
     private final Ui ui;
     private TaskList tasks;
@@ -35,6 +44,6 @@ public class Angus {
     }
 
     public static void main(String[] args) {
-        new Angus("data/Angus.txt").run();
+        new Angus("data/angus.Angus.txt").run();
     }
 }

@@ -1,8 +1,10 @@
+package angus.task;
+
 public abstract class Task {
     protected final String description;
     private boolean isDone;
 
-    enum TaskTypes {
+    public enum TaskTypes {
         E,
         T,
         D,

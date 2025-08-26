@@ -1,5 +1,9 @@
+package angus.command;
+
+import angus.exception.AngusException;
+
 public abstract class Commands {
-    enum CommandList {
+    public enum CommandList {
         bye,
         mark,
         unmark,
