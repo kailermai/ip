@@ -5,9 +5,11 @@ import java.util.Scanner;
 
 public class Angus {
     private final Ui ui;
+    private final TaskList taskList;
 
     public Angus() {
         this.ui = new Ui();
+        this.taskList = new TaskList();
     }
 
     private final static String HORIZONTAL_LINE =
@@ -30,12 +32,10 @@ public class Angus {
     }
 
     public void run() {
-        List<Task> taskList = new ArrayList<>();
-
         Scanner input = new Scanner(System.in);
-        ui.greetingsMessage();
         boolean running = true;
         String command;
+        ui.greetingsMessage();
 
         while (running) {
             command = input.nextLine();
@@ -53,21 +53,7 @@ public class Angus {
                     running = false;
                     break;
                 case list:
-                    if (taskList.isEmpty()) {
-                        throw new AngusException("Your task list is empty!");
-                    }
-                    StringBuilder list = new StringBuilder();
-                    list.append("Here are your tasks:\n\t");
-                    for (int i  = 0; i < taskList.size(); i++) {
-                        curTask = taskList.get(i);
-                        list.append(i + 1);
-                        list.append(".");
-                        list.append(curTask);
-                        if (i < taskList.size() - 1){
-                            list.append(LINE_SEPARATOR); // prevent empty line at the end
-                        }
-                    }
-                    System.out.println(angusResponse(list.toString()));
+                    ui.displayTaskList(taskList.getTaskList());
                     break;
                 case mark:
                     if (commandList.length != 2) {
