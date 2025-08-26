@@ -10,6 +10,7 @@ public class Angus {
         try {
             this.tasks = new TaskList(ui, storage.load());
         } catch (AngusException e) {
+            ui.printError(e.getMessage());
             this.tasks = new TaskList(ui);
         }
         this.parser = new Parser(ui, tasks, storage);
