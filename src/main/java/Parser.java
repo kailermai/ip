@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Parser {
     private final Ui ui;
     private final TaskList tasks;
@@ -15,10 +17,8 @@ public class Parser {
         switch (mainCommand) {
         case bye:
             return new ByeCommand(ui);
-            break;
         case list:
             return new ListCommand(tasks);
-            break;
         case mark:
             if (commandList.length != 2) {
                 throw new AngusException("Wrong usage of mark!" +
@@ -34,7 +34,6 @@ public class Parser {
                         "Usage: mark [task number]");
             }
             return new MarkCommand(tasks, taskNum);
-            break;
         case unmark:
             if (commandList.length != 2) {
                 throw new AngusException("Wrong usage of unmark!" +
@@ -51,7 +50,6 @@ public class Parser {
                         "Usage: unmark [task number]");
             }
             return new UnmarkCommand(tasks, taskNum);
-            break;
         case todo:
             StringBuilder todoName = new StringBuilder();
             for (int i = 1; i < commandList.length; i++) {
@@ -63,7 +61,6 @@ public class Parser {
                         "Usage: todo [description]");
             }
             return new TodoCommand(tasks, todoName.toString());
-            break;
         case deadline:
             int j = 1;
             StringBuilder deadlineName = new StringBuilder();
@@ -90,7 +87,6 @@ public class Parser {
                         "Usage: deadline [description] /by [due date/time]");
             }
             return new DeadlineCommand(tasks, deadlineName.toString(), endDate.toString());
-            break;
         case event:
             int i = 1;
             StringBuilder eventName = new StringBuilder();
@@ -129,7 +125,6 @@ public class Parser {
                         "Usage: event [description] /from [start date/time] /to [end date/time]");
             }
             return new EventCommand(tasks, eventName.toString(), startDate.toString(), endDate.toString());
-            break;
         case delete:
             if (commandList.length != 2) {
                 throw new AngusException("Wrong usage of delete!" +
@@ -145,8 +140,9 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: delete [task number]");
             }
-            tasks.deleteTask(taskNum);
-            break;
+            return new DeleteCommand(tasks, taskNum);
+        default:
+            throw new IllegalArgumentException();
         }
     }
 }
