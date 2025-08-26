@@ -1,12 +1,19 @@
 public class Angus {
     private final Ui ui;
-    private final TaskList tasks;
+    private TaskList tasks;
     private final Parser parser;
+    private Storage storage;
 
-    public Angus() {
+    public Angus(String filePath) {
+        this.storage = new Storage(filePath);
         this.ui = new Ui();
-        this.tasks = new TaskList(ui);
-        this.parser = new Parser(ui, tasks);
+        try {
+            this.tasks = new TaskList(ui, storage.load());
+        } catch (AngusException e) {
+            ui.printError(e.getMessage());
+            this.tasks = new TaskList(ui);
+        }
+        this.parser = new Parser(ui, tasks, storage);
     }
 
     public void run() {
@@ -21,14 +28,13 @@ public class Angus {
                 isExit = c.isExit();
             } catch (IllegalArgumentException e) {
                 ui.printUnknownCommand();
-            }
-            catch (AngusException e) {
+            } catch (AngusException e) {
                 ui.printError(e.getMessage());
             }
         }
     }
 
     public static void main(String[] args) {
-        new Angus().run();
+        new Angus("data/Angus.txt").run();
     }
 }

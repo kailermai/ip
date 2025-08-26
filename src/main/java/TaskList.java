@@ -4,11 +4,23 @@ import java.util.List;
 public class TaskList {
     private final List<Task> taskList;
     private final Ui ui;
-    public static int count = 0;
 
     public TaskList(Ui ui) {
         this.taskList = new ArrayList<>();
         this.ui = ui;
+    }
+
+    public TaskList(Ui ui, List<Task> taskList) {
+        this.taskList = taskList;
+        this.ui = ui;
+    }
+
+    public Task getTask(int taskNum) {
+        return taskList.get(taskNum);
+    }
+
+    public int getSize() {
+        return taskList.size();
     }
 
     public void getTaskList() throws AngusException {
@@ -43,33 +55,29 @@ public class TaskList {
     public void addTodo(String todoName) {
         ToDo newTodo = new ToDo(todoName);
         taskList.add(newTodo);
-        TaskList.count++;
-        ui.printAddTodo(newTodo, TaskList.count);
+        ui.printAddTodo(newTodo, taskList.size());
     }
 
     public void addDeadline(String deadlineName, String endDate) {
         Deadline newDeadline = new Deadline(deadlineName, endDate);
         taskList.add(newDeadline);
-        TaskList.count++;
-        ui.printAddDeadline(newDeadline, TaskList.count);
+        ui.printAddDeadline(newDeadline, taskList.size());
     }
 
     public void addEvent(String eventName, String startDate, String endDate) {
         Event newEvent = new Event(eventName, startDate, endDate);
         taskList.add(newEvent);
-        TaskList.count++;
-        ui.printAddEvent(newEvent, TaskList.count);
+        ui.printAddEvent(newEvent, taskList.size());
     }
 
     public void deleteTask(int taskNum) throws AngusException {
-        if (taskNum >= TaskList.count) {
+        if (taskNum >= taskList.size()) {
             throw new AngusException("Task does not exist!" +
                     Ui.LINE_BREAK +
                     "Usage: delete [task number]");
         }
         Task removedTask = taskList.get(taskNum);
-        TaskList.count--;
         taskList.remove(taskNum);
-        ui.printDeleteTask(removedTask, TaskList.count);
+        ui.printDeleteTask(removedTask, taskList.size());
     }
 }
