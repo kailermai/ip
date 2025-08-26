@@ -7,6 +7,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String saveTask() {
+        return "D//" + super.getCompleteStatus() + "//" + super.description + "//" + this.endDate;
+    }
+
+    @Override
     public String getStatusIcon() {
         return "[D]" + super.getStatusIcon();
     }

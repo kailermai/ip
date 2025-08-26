@@ -12,7 +12,7 @@ public class Angus {
         } catch (AngusException e) {
             this.tasks = new TaskList(ui);
         }
-        this.parser = new Parser(ui, tasks);
+        this.parser = new Parser(ui, tasks, storage);
     }
 
     public void run() {
@@ -27,8 +27,7 @@ public class Angus {
                 isExit = c.isExit();
             } catch (IllegalArgumentException e) {
                 ui.printUnknownCommand();
-            }
-            catch (AngusException e) {
+            } catch (AngusException e) {
                 ui.printError(e.getMessage());
             }
         }

@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -22,21 +24,21 @@ public class Storage {
                 Task.TaskTypes taskType = Task.TaskTypes.valueOf(taskDetails[0]);
                 switch (taskType) {
                 case T:
-                    ToDo toDo = new ToDo(" " + taskDetails[2]);
+                    ToDo toDo = new ToDo(taskDetails[2]);
                     if (taskDetails[1].equals("1")) {
                         toDo.markDone();
                     }
                     tmp.add(toDo);
                     break;
                 case D:
-                    Deadline deadline = new Deadline(" " + taskDetails[2], " " + taskDetails[3]);
+                    Deadline deadline = new Deadline(taskDetails[2], taskDetails[3]);
                     if (taskDetails[1].equals("1")) {
                         deadline.markDone();
                     }
                     tmp.add(deadline);
                     break;
                 case E:
-                    Event event = new Event(" " + taskDetails[2], " " + taskDetails[3], " " + taskDetails[4]);
+                    Event event = new Event(taskDetails[2], taskDetails[3], taskDetails[4]);
                     if (taskDetails[1].equals("1")) {
                         event.markDone();
                     }
@@ -47,6 +49,20 @@ public class Storage {
             return tmp;
         } catch (FileNotFoundException e) {
             throw new AngusException("No save data found! Generating a new save...");
+        }
+    }
+
+    public void save(TaskList tasks) throws AngusException {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            for (int i = 0; i < tasks.getSize(); i++) {
+                Task curTask = tasks.getTask(i);
+                fw.write(curTask.saveTask());
+                fw.write("\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new AngusException("Unable to save! :(");
         }
     }
 }

@@ -8,6 +8,12 @@ public class Event extends Task {
     }
 
     @Override
+    public String saveTask() {
+        return "E//" + super.getCompleteStatus() + "//" +
+                super.description + "//" + this.startDate + "//" + this.endDate;
+    }
+
+    @Override
     public String getStatusIcon() {
         return "[E]" + super.getStatusIcon();
     }

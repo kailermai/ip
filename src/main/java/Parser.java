@@ -1,12 +1,12 @@
-import java.util.Arrays;
-
 public class Parser {
     private final Ui ui;
     private final TaskList tasks;
+    private final Storage storage;
 
-    public Parser(Ui ui, TaskList tasks) {
+    public Parser(Ui ui, TaskList tasks, Storage storage) {
         this.ui = ui;
         this.tasks = tasks;
+        this.storage = storage;
     }
 
     public Commands parse(String fullCommand) throws AngusException {
@@ -16,7 +16,7 @@ public class Parser {
         StringBuilder endDate;
         switch (mainCommand) {
         case bye:
-            return new ByeCommand(ui);
+            return new ByeCommand(ui, storage, tasks);
             // no break because return prevents fallthrough
         case list:
             return new ListCommand(tasks);

@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     protected final String description;
     private boolean isDone;
 
@@ -16,6 +16,7 @@ public class Task {
     public String getDescription() {
         return this.description;
     }
+    public abstract String saveTask();
 
     public boolean markDone() {
         if (this.isDone) {
@@ -37,6 +38,10 @@ public class Task {
 
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]");
+    }
+
+    public String getCompleteStatus() {
+        return (isDone ? "1" : "0");
     }
 
     @Override
