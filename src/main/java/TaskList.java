@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,13 +60,13 @@ public class TaskList {
         ui.printAddTodo(newTodo, taskList.size());
     }
 
-    public void addDeadline(String deadlineName, String endDate) {
+    public void addDeadline(String deadlineName, LocalDate endDate) {
         Deadline newDeadline = new Deadline(deadlineName, endDate);
         taskList.add(newDeadline);
         ui.printAddDeadline(newDeadline, taskList.size());
     }
 
-    public void addEvent(String eventName, String startDate, String endDate) {
+    public void addEvent(String eventName, LocalDate startDate, LocalDate endDate) {
         Event newEvent = new Event(eventName, startDate, endDate);
         taskList.add(newEvent);
         ui.printAddEvent(newEvent, taskList.size());

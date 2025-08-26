@@ -1,9 +1,11 @@
+import java.time.LocalDate;
+
 public class DeadlineCommand extends Commands {
     private final TaskList tasks;
     private final String deadlineName;
-    private final String endDate;
+    private final LocalDate endDate;
 
-    public DeadlineCommand(TaskList tasks, String deadlineName, String endDate) {
+    public DeadlineCommand(TaskList tasks, String deadlineName, LocalDate endDate) {
         this.tasks = tasks;
         this.deadlineName = deadlineName;
         this.endDate = endDate;

@@ -1,7 +1,12 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Parser {
     private final Ui ui;
     private final TaskList tasks;
     private final Storage storage;
+    public static DateTimeFormatter FORMATTER_FROM = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static DateTimeFormatter FORMATTER_TO = DateTimeFormatter.ofPattern("MMM-dd-yyyy");
 
     public Parser(Ui ui, TaskList tasks, Storage storage) {
         this.ui = ui;
@@ -64,7 +69,7 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: todo [description]");
             }
-            return new TodoCommand(tasks, todoName.toString());
+            return new TodoCommand(tasks, todoName.toString().trim());
             // no break because return prevents fallthrough
         case deadline:
             int j = 1;
@@ -85,13 +90,21 @@ public class Parser {
             if (deadlineName.isEmpty()) {
                 throw new AngusException("Deadline description cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: deadline [description] /by [due date]");
+                        "Usage: deadline [description] /by yyyy-mm-dd");
             } else if (endDate.isEmpty()) {
                 throw new AngusException("Deadline due date cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: deadline [description] /by [due date/time]");
+                        "Usage: deadline [description] /by yyyy-mm-dd");
             }
-            return new DeadlineCommand(tasks, deadlineName.toString(), endDate.toString());
+            // convert endDate to DateTime object
+            try {
+                LocalDate dateTime = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
+                return new DeadlineCommand(tasks, deadlineName.toString().trim(), dateTime);
+            } catch (RuntimeException e) {
+                throw new AngusException("Incorrect date format!" +
+                        Ui.LINE_BREAK +
+                        "Usage: deadline [description] /by yyyy-mm-dd");
+            }
             // no break because return prevents fallthrough
         case event:
             int i = 1;
@@ -120,17 +133,25 @@ public class Parser {
             if (eventName.isEmpty()) {
                 throw new AngusException("Event description cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: event [description] /from [start date/time] /to [end date/time]");
+                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             } else if (startDate.isEmpty()) {
                 throw new AngusException("Event start date cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: event [description] /from [start date/time] /to [end date/time]");
+                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             } else if (endDate.isEmpty()) {
                 throw new AngusException("Event end date cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: event [description] /from [start date/time] /to [end date/time]");
+                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             }
-            return new EventCommand(tasks, eventName.toString(), startDate.toString(), endDate.toString());
+            try {
+                LocalDate formattedStartDate = LocalDate.parse(startDate.toString().trim(), FORMATTER_FROM);
+                LocalDate formattedEndDate = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
+                return new EventCommand(tasks, eventName.toString().trim(), formattedStartDate, formattedEndDate);
+            } catch (RuntimeException e) {
+                throw new AngusException("Incorrect date format!" +
+                        Ui.LINE_BREAK +
+                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
+            }
             // no break because return prevents fallthrough
         case delete:
             if (commandList.length != 2) {
