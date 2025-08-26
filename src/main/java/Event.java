@@ -1,7 +1,9 @@
-public class Event extends Task {
-    String startDate, endDate;
+import java.time.LocalDate;
 
-    public Event(String description, String startDate, String endDate) {
+public class Event extends Task {
+    LocalDate startDate, endDate;
+
+    public Event(String description, LocalDate startDate, LocalDate endDate) {
         super(description);
         this.startDate = startDate;
         this.endDate = endDate;
@@ -20,6 +22,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (from:" + this.startDate + " to:" + this.endDate + ")";
+        return super.toString() + " (from: " + this.startDate + " to: " + this.endDate + ")";
     }
 }

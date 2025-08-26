@@ -70,7 +70,7 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: todo [description]");
             }
-            return new TodoCommand(tasks, todoName.toString());
+            return new TodoCommand(tasks, todoName.toString().trim());
             // no break because return prevents fallthrough
         case deadline:
             int j = 1;
@@ -138,7 +138,9 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: event [description] /from [start date/time] /to [end date/time]");
             }
-            return new EventCommand(tasks, eventName.toString(), startDate.toString(), endDate.toString());
+            LocalDate formattedStartDate = LocalDate.parse(startDate.toString().trim(), FORMATTER_FROM);
+            LocalDate formattedEndDate = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
+            return new EventCommand(tasks, eventName.toString().trim(), formattedStartDate, formattedEndDate);
             // no break because return prevents fallthrough
         case delete:
             if (commandList.length != 2) {

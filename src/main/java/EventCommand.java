@@ -1,10 +1,12 @@
+import java.time.LocalDate;
+
 public class EventCommand extends Commands {
     private final TaskList tasks;
     private final String eventName;
-    private final String startDate;
-    private final String endDate;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
 
-    public EventCommand(TaskList tasks, String eventName, String startDate, String endDate) {
+    public EventCommand(TaskList tasks, String eventName, LocalDate startDate, LocalDate endDate) {
         this.tasks = tasks;
         this.eventName = eventName;
         this.startDate = startDate;

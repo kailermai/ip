@@ -66,7 +66,7 @@ public class TaskList {
         ui.printAddDeadline(newDeadline, taskList.size());
     }
 
-    public void addEvent(String eventName, String startDate, String endDate) {
+    public void addEvent(String eventName, LocalDate startDate, LocalDate endDate) {
         Event newEvent = new Event(eventName, startDate, endDate);
         taskList.add(newEvent);
         ui.printAddEvent(newEvent, taskList.size());

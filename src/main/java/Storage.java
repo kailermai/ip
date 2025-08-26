@@ -40,7 +40,9 @@ public class Storage {
                     tmp.add(deadline);
                     break;
                 case E:
-                    Event event = new Event(taskDetails[2], taskDetails[3], taskDetails[4]);
+                    LocalDate formattedStartDate = LocalDate.parse(taskDetails[3], Parser.FORMATTER_FROM);
+                    LocalDate formattedEndDate = LocalDate.parse(taskDetails[4], Parser.FORMATTER_FROM);
+                    Event event = new Event(taskDetails[2], formattedStartDate, formattedEndDate);
                     if (taskDetails[1].equals("1")) {
                         event.markDone();
                     }
