@@ -1,9 +1,10 @@
 import java.util.List;
 
+import static java.lang.Character.LINE_SEPARATOR;
+
 public class Ui {
     private final static String HORIZONTAL_LINE =
             "____________________________________________________________";
-    private final static String LINE_SEPARATOR = "\n\t";
 
     public static String angusResponse(String text) {
         return "\t" + HORIZONTAL_LINE + LINE_SEPARATOR + text + LINE_SEPARATOR + HORIZONTAL_LINE;
@@ -35,5 +36,19 @@ public class Ui {
             }
         }
         System.out.println(angusResponse(list.toString()));
+    }
+
+    public void displayMarkTask(boolean result, Task curTask) {
+        String message;
+        if (result) {
+            message = "Angus has marked this task as done!"
+                    + LINE_SEPARATOR
+                    + "\t" + curTask;
+        } else {
+            message = "This task is already marked as done!"
+                    + LINE_SEPARATOR
+                    + "\t" + curTask;
+        }
+        System.out.println(angusResponse(message));
     }
 }

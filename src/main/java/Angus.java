@@ -1,15 +1,13 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Angus {
     private final Ui ui;
-    private final TaskList taskList;
+    private final TaskList tasks;
 
     public Angus() {
         this.ui = new Ui();
-        this.taskList = new TaskList();
+        this.tasks = new TaskList(ui);
     }
 
     private final static String HORIZONTAL_LINE =
@@ -53,7 +51,7 @@ public class Angus {
                     running = false;
                     break;
                 case list:
-                    ui.displayTaskList(taskList.getTaskList());
+                    tasks.getTaskList();
                     break;
                 case mark:
                     if (commandList.length != 2) {
@@ -70,24 +68,7 @@ public class Angus {
                                 LINE_SEPARATOR +
                                 "Usage: mark [task number]");
                     }
-
-                    if (taskNum >= taskList.toArray().length) {
-                        throw new AngusException("Task does not exist!" +
-                                LINE_SEPARATOR +
-                                "Usage: mark [task number]");
-                    }
-                    curTask = taskList.get(taskNum);
-                    result = curTask.markDone();
-                    if (result) {
-                        message = "Angus has marked this task as done!"
-                                + LINE_SEPARATOR
-                                + "\t" + curTask;
-                    } else {
-                        message = "This task is already marked as done!"
-                                + LINE_SEPARATOR
-                                + "\t" + curTask;
-                    }
-                    System.out.println(angusResponse(message));
+                    tasks.markTask(taskNum);
                     break;
                 case unmark:
                     if (commandList.length != 2) {
@@ -104,12 +85,12 @@ public class Angus {
                                 LINE_SEPARATOR +
                                 "Usage: unmark [task number]");
                     }
-                    if (taskNum >= taskList.toArray().length) {
+                    if (taskNum >= tasks.toArray().length) {
                         throw new AngusException("Task does not exist!" +
                                 LINE_SEPARATOR +
                                 "Usage: unmark [task number]");
                     }
-                    curTask = taskList.get(taskNum);
+                    curTask = tasks.get(taskNum);
                     result = curTask.markNotDone();
                     if (result) {
                         message = "Angus has marked this task as NOT done!"
@@ -133,12 +114,12 @@ public class Angus {
                                 "Usage: todo [description]");
                     }
                     ToDo newTodo = new ToDo(todoName.toString());
-                    taskList.add(newTodo);
+                    tasks.add(newTodo);
                     message = angusResponse("Angus has added this task:" +
                             LINE_SEPARATOR +
                             "\t" + newTodo +
                             LINE_SEPARATOR +
-                            "You now have " + taskList.toArray().length + " tasks in the list");
+                            "You now have " + tasks.toArray().length + " tasks in the list");
                     System.out.println(message);
                     break;
                 case deadline:
@@ -168,12 +149,12 @@ public class Angus {
                     }
 
                     Deadline newDeadline = new Deadline(deadlineName.toString(), endDate.toString());
-                    taskList.add(newDeadline);
+                    tasks.add(newDeadline);
                     message = angusResponse("Angus has added this deadline:" +
                             LINE_SEPARATOR +
                             "\t" + newDeadline +
                             LINE_SEPARATOR +
-                            "You now have " + taskList.toArray().length + " tasks in the list");
+                            "You now have " + tasks.toArray().length + " tasks in the list");
                     System.out.println(message);
                     break;
                 case event:
@@ -216,12 +197,12 @@ public class Angus {
 
                     Event newEvent = new Event(eventName.toString(), startDate.toString(),
                             endDate.toString());
-                    taskList.add(newEvent);
+                    tasks.add(newEvent);
                     message = angusResponse("Angus has added this event:" +
                             LINE_SEPARATOR +
                             "\t" + newEvent +
                             LINE_SEPARATOR +
-                            "You now have " + taskList.toArray().length + " tasks in the list");
+                            "You now have " + tasks.toArray().length + " tasks in the list");
                     System.out.println(message);
                     break;
                 case delete:
@@ -240,18 +221,18 @@ public class Angus {
                                 "Usage: delete [task number]");
                     }
 
-                    if (taskNum >= taskList.toArray().length) {
+                    if (taskNum >= tasks.toArray().length) {
                         throw new AngusException("Task does not exist!" +
                                 LINE_SEPARATOR +
                                 "Usage: delete [task number]");
                     }
-                    Task removedTask = taskList.get(taskNum);
-                    taskList.remove(taskNum);
+                    Task removedTask = tasks.get(taskNum);
+                    tasks.remove(taskNum);
                     message = "All done! Angus has removed this task:" +
                             LINE_SEPARATOR +
                             "\t" + removedTask +
                             LINE_SEPARATOR +
-                            "You now have " + taskList.toArray().length + " tasks in the list";
+                            "You now have " + tasks.toArray().length + " tasks in the list";
 
                     System.out.println(angusResponse(message));
                     break;
