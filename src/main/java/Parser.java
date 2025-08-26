@@ -11,6 +11,7 @@ public class Parser {
         String[] commandList = fullCommand.split(" ");
         Commands.CommandList mainCommand = Commands.CommandList.valueOf(commandList[0]);
         int taskNum;
+        StringBuilder endDate;
         switch (mainCommand) {
         case bye:
             return new ByeCommand(ui);
@@ -61,7 +62,7 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: todo [description]");
             }
-            tasks.addTodo(todoName.toString());
+            return new TodoCommand(tasks, todoName.toString());
             break;
         case deadline:
             int j = 1;
@@ -88,7 +89,7 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: deadline [description] /by [due date/time]");
             }
-            tasks.addDeadline(deadlineName.toString(), endDate.toString());
+            return new DeadlineCommand(tasks, deadlineName.toString(), endDate.toString());
             break;
         case event:
             int i = 1;
@@ -127,7 +128,7 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: event [description] /from [start date/time] /to [end date/time]");
             }
-            tasks.addEvent(eventName.toString(), startDate.toString(), endDate.toString());
+            return new EventCommand(tasks, eventName.toString(), startDate.toString(), endDate.toString());
             break;
         case delete:
             if (commandList.length != 2) {
