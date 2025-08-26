@@ -122,15 +122,7 @@ public class Angus {
                                 LINE_SEPARATOR +
                                 "Usage: deadline [description] /by [due date/time]");
                     }
-
-                    Deadline newDeadline = new Deadline(deadlineName.toString(), endDate.toString());
-                    tasks.add(newDeadline);
-                    message = angusResponse("Angus has added this deadline:" +
-                            LINE_SEPARATOR +
-                            "\t" + newDeadline +
-                            LINE_SEPARATOR +
-                            "You now have " + tasks.toArray().length + " tasks in the list");
-                    System.out.println(message);
+                    tasks.addDeadline(deadlineName.toString(), endDate.toString());
                     break;
                 case event:
                     int i = 1;
@@ -169,16 +161,7 @@ public class Angus {
                                 LINE_SEPARATOR +
                                 "Usage: event [description] /from [start date/time] /to [end date/time]");
                     }
-
-                    Event newEvent = new Event(eventName.toString(), startDate.toString(),
-                            endDate.toString());
-                    tasks.add(newEvent);
-                    message = angusResponse("Angus has added this event:" +
-                            LINE_SEPARATOR +
-                            "\t" + newEvent +
-                            LINE_SEPARATOR +
-                            "You now have " + tasks.toArray().length + " tasks in the list");
-                    System.out.println(message);
+                    tasks.addEvent(eventName.toString(), startDate.toString(), endDate.toString());
                     break;
                 case delete:
                     if (commandList.length != 2) {
@@ -195,21 +178,7 @@ public class Angus {
                                 LINE_SEPARATOR +
                                 "Usage: delete [task number]");
                     }
-
-                    if (taskNum >= tasks.toArray().length) {
-                        throw new AngusException("Task does not exist!" +
-                                LINE_SEPARATOR +
-                                "Usage: delete [task number]");
-                    }
-                    Task removedTask = tasks.get(taskNum);
-                    tasks.remove(taskNum);
-                    message = "All done! Angus has removed this task:" +
-                            LINE_SEPARATOR +
-                            "\t" + removedTask +
-                            LINE_SEPARATOR +
-                            "You now have " + tasks.toArray().length + " tasks in the list";
-
-                    System.out.println(angusResponse(message));
+                    tasks.deleteTask(taskNum);
                     break;
                 }
             } catch (IllegalArgumentException e) {

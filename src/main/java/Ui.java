@@ -66,12 +66,40 @@ public class Ui {
         System.out.println(angusResponse(message));
     }
 
-    public void printAddTodo(ToDo newTodo, int taskListLength) {
+    public void printAddTodo(ToDo newTodo, int count) {
         String message = angusResponse("Angus has added this task:" +
                 LINE_SEPARATOR +
                 "\t" + newTodo +
                 LINE_SEPARATOR +
-                "You now have " + taskListLength + " tasks in the list");
+                "You now have " + count + " tasks in the list");
         System.out.println(message);
+    }
+
+    public void printAddDeadline(Deadline newDeadline, int count) {
+        String message = angusResponse("Angus has added this deadline:" +
+                LINE_SEPARATOR +
+                "\t" + newDeadline +
+                LINE_SEPARATOR +
+                "You now have " + count + " tasks in the list");
+        System.out.println(message);
+    }
+
+    public void printAddEvent(Event newEvent, int count) {
+        String message = angusResponse("Angus has added this event:" +
+                LINE_SEPARATOR +
+                "\t" + newEvent +
+                LINE_SEPARATOR +
+                "You now have " + count + " tasks in the list");
+        System.out.println(message);
+    }
+
+    public void printDeleteTask(Task removedTask, int count) {
+        String message = "All done! Angus has removed this task:" +
+                LINE_SEPARATOR +
+                "\t" + removedTask +
+                LINE_SEPARATOR +
+                "You now have " + count + " tasks in the list";
+
+        System.out.println(angusResponse(message));
     }
 }

@@ -5,6 +5,7 @@ import static java.lang.Character.LINE_SEPARATOR;
 public class TaskList {
     private final List<Task> taskList;
     private final Ui ui;
+    public static int count = 0;
 
     public TaskList(Ui ui) {
         this.taskList = new ArrayList<>();
@@ -42,7 +43,33 @@ public class TaskList {
 
     public void addTodo(String todoName) {
         ToDo newTodo = new ToDo(todoName);
-        taskList.add(newTodo, taskList.size());
+        taskList.add(newTodo);
+        TaskList.count++;
+        ui.printAddTodo(newTodo, TaskList.count);
+    }
 
+    public void addDeadline(String deadlineName, String endDate) {
+        Deadline newDeadline = new Deadline(deadlineName, endDate);
+        taskList.add(newDeadline);
+        TaskList.count++;
+        ui.printAddDeadline(newDeadline, TaskList.count);
+    }
+
+    public void addEvent(String eventName, String startDate, String endDate) {
+        Event newEvent = new Event(eventName, startDate, endDate);
+        taskList.add(newEvent);
+        TaskList.count++;
+        ui.printAddEvent(newEvent, TaskList.count);
+    }
+
+    public void deleteTask(int taskNum) throws AngusException {
+        if (taskNum >= TaskList.count) {
+            throw new AngusException("Task does not exist!" +
+                    LINE_SEPARATOR +
+                    "Usage: delete [task number]");
+        }
+        Task removedTask = taskList.get(taskNum);
+        taskList.remove(taskNum);
+        ui.printDeleteTask(removedTask, TaskList.count);
     }
 }
