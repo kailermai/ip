@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import static java.lang.Character.LINE_SEPARATOR;
 
 public class TaskList {
     private final List<Task> taskList;
@@ -22,7 +21,7 @@ public class TaskList {
     public void markTask(int taskNum) throws AngusException {
         if (taskNum >= taskList.toArray().length) {
             throw new AngusException("Task does not exist!" +
-                    LINE_SEPARATOR +
+                    Ui.LINE_BREAK +
                     "Usage: mark [task number]");
         }
         Task curTask = taskList.get(taskNum);
@@ -33,7 +32,7 @@ public class TaskList {
     public void unmarkTask(int taskNum) throws AngusException {
         if (taskNum >= taskList.toArray().length) {
             throw new AngusException("Task does not exist!" +
-                    LINE_SEPARATOR +
+                    Ui.LINE_BREAK +
                     "Usage: unmark [task number]");
         }
         Task curTask = taskList.get(taskNum);
@@ -65,10 +64,11 @@ public class TaskList {
     public void deleteTask(int taskNum) throws AngusException {
         if (taskNum >= TaskList.count) {
             throw new AngusException("Task does not exist!" +
-                    LINE_SEPARATOR +
+                    Ui.LINE_BREAK +
                     "Usage: delete [task number]");
         }
         Task removedTask = taskList.get(taskNum);
+        TaskList.count--;
         taskList.remove(taskNum);
         ui.printDeleteTask(removedTask, TaskList.count);
     }

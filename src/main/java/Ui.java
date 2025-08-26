@@ -1,18 +1,17 @@
 import java.util.List;
 
-import static java.lang.Character.LINE_SEPARATOR;
-
 public class Ui {
     private final static String HORIZONTAL_LINE =
             "____________________________________________________________";
+    public final static String LINE_BREAK = "\n\t";
 
     public static String angusResponse(String text) {
-        return "\t" + HORIZONTAL_LINE + LINE_SEPARATOR + text + LINE_SEPARATOR + HORIZONTAL_LINE;
+        return "\t" + HORIZONTAL_LINE + LINE_BREAK + text + LINE_BREAK + HORIZONTAL_LINE;
     }
 
     public void greetingsMessage() {
         String greetingsText = "Hello! I'm Angus o_O" +
-                LINE_SEPARATOR +
+                LINE_BREAK +
                 "What can I do for you today?";
         System.out.println(angusResponse(greetingsText));
     }
@@ -32,7 +31,7 @@ public class Ui {
             list.append(".");
             list.append(curTask);
             if (i < taskList.size() - 1){
-                list.append(LINE_SEPARATOR); // prevent empty line at the end
+                list.append(LINE_BREAK); // prevent empty line at the end
             }
         }
         System.out.println(angusResponse(list.toString()));
@@ -42,11 +41,11 @@ public class Ui {
         String message;
         if (result) {
             message = "Angus has marked this task as done!"
-                    + LINE_SEPARATOR
+                    + LINE_BREAK
                     + "\t" + curTask;
         } else {
             message = "This task is already marked as done!"
-                    + LINE_SEPARATOR
+                    + LINE_BREAK
                     + "\t" + curTask;
         }
         System.out.println(angusResponse(message));
@@ -56,11 +55,11 @@ public class Ui {
         String message;
         if (result) {
             message = "Angus has marked this task as NOT done!"
-                    + LINE_SEPARATOR
+                    + LINE_BREAK
                     + "\t" + curTask;
         } else {
             message = "This task is already marked as NOT done!"
-                    + LINE_SEPARATOR
+                    + LINE_BREAK
                     + "\t" + curTask;
         }
         System.out.println(angusResponse(message));
@@ -68,36 +67,36 @@ public class Ui {
 
     public void printAddTodo(ToDo newTodo, int count) {
         String message = angusResponse("Angus has added this task:" +
-                LINE_SEPARATOR +
+                LINE_BREAK +
                 "\t" + newTodo +
-                LINE_SEPARATOR +
+                LINE_BREAK +
                 "You now have " + count + " tasks in the list");
         System.out.println(message);
     }
 
     public void printAddDeadline(Deadline newDeadline, int count) {
         String message = angusResponse("Angus has added this deadline:" +
-                LINE_SEPARATOR +
+                LINE_BREAK +
                 "\t" + newDeadline +
-                LINE_SEPARATOR +
+                LINE_BREAK +
                 "You now have " + count + " tasks in the list");
         System.out.println(message);
     }
 
     public void printAddEvent(Event newEvent, int count) {
         String message = angusResponse("Angus has added this event:" +
-                LINE_SEPARATOR +
+                LINE_BREAK +
                 "\t" + newEvent +
-                LINE_SEPARATOR +
+                LINE_BREAK +
                 "You now have " + count + " tasks in the list");
         System.out.println(message);
     }
 
     public void printDeleteTask(Task removedTask, int count) {
         String message = "All done! Angus has removed this task:" +
-                LINE_SEPARATOR +
+                LINE_BREAK +
                 "\t" + removedTask +
-                LINE_SEPARATOR +
+                LINE_BREAK +
                 "You now have " + count + " tasks in the list";
 
         System.out.println(angusResponse(message));
