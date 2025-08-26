@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Angus {
     private final Ui ui;
     private final TaskList tasks;
@@ -9,7 +6,7 @@ public class Angus {
     public Angus() {
         this.ui = new Ui();
         this.tasks = new TaskList(ui);
-        this.parser = new Parser(ui);
+        this.parser = new Parser(ui, tasks);
     }
 
     public void run() {
@@ -20,6 +17,8 @@ public class Angus {
             try {
                 String fullCommand = ui.readCommand();
                 Commands c = parser.parse(fullCommand);
+                c.execute();
+                isExit = c.isExit();
             } catch (IllegalArgumentException e) {
                 ui.printUnknownCommand();
             }

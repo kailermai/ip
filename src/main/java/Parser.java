@@ -10,6 +10,7 @@ public class Parser {
     public Commands parse(String fullCommand) throws AngusException {
         String[] commandList = fullCommand.split(" ");
         Commands.CommandList mainCommand = Commands.CommandList.valueOf(commandList[0]);
+        int taskNum;
         switch (mainCommand) {
         case bye:
             return new ByeCommand(ui);
@@ -23,7 +24,6 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: mark [task number]");
             }
-
             // Handles case: mark [non integer]
             try {
                 taskNum = Integer.parseInt(commandList[1]) - 1;
@@ -32,7 +32,7 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: mark [task number]");
             }
-            tasks.markTask(taskNum);
+            return new MarkCommand(tasks, taskNum);
             break;
         case unmark:
             if (commandList.length != 2) {
@@ -49,7 +49,7 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: unmark [task number]");
             }
-            tasks.unmarkTask(taskNum);
+            return new UnmarkCommand(tasks, taskNum);
             break;
         case todo:
             StringBuilder todoName = new StringBuilder();
