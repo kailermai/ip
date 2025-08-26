@@ -1,23 +1,33 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Ui {
+    private final Scanner input;
     private final static String HORIZONTAL_LINE =
             "____________________________________________________________";
     public final static String LINE_BREAK = "\n\t";
+
+    public Ui() {
+        this.input = new Scanner(System.in);
+    }
+
+    public String readCommand() {
+        return input.nextLine();
+    }
 
     public static String angusResponse(String text) {
         return "\t" + HORIZONTAL_LINE + LINE_BREAK + text + LINE_BREAK + HORIZONTAL_LINE;
     }
 
-    public void greetingsMessage() {
+    public void printGreetingsMessage() {
         String greetingsText = "Hello! I'm Angus o_O" +
                 LINE_BREAK +
                 "What can I do for you today?";
         System.out.println(angusResponse(greetingsText));
     }
 
-    public void goodbyeMessage() {
+    public void printGoodbyeMessage() {
         String goodbyeText = "Goodbye. Hope to see you again soon!";
         System.out.println(angusResponse(goodbyeText));
     }
@@ -27,7 +37,7 @@ public class Ui {
                 LINE_BREAK +
                 "Try any of the following commands:" +
                 LINE_BREAK +
-                Arrays.asList(Angus.Commands.values());
+                Arrays.asList(Commands.CommandList.values());
         System.out.println(angusResponse(message));
     }
 
