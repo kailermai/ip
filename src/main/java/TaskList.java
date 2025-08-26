@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +60,7 @@ public class TaskList {
         ui.printAddTodo(newTodo, taskList.size());
     }
 
-    public void addDeadline(String deadlineName, String endDate) {
+    public void addDeadline(String deadlineName, LocalDate endDate) {
         Deadline newDeadline = new Deadline(deadlineName, endDate);
         taskList.add(newDeadline);
         ui.printAddDeadline(newDeadline, taskList.size());

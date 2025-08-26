@@ -1,7 +1,13 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Parser {
     private final Ui ui;
     private final TaskList tasks;
     private final Storage storage;
+    public static DateTimeFormatter FORMATTER_FROM = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static DateTimeFormatter FORMATTER_TO = DateTimeFormatter.ofPattern("MMM-dd-yyyy");
 
     public Parser(Ui ui, TaskList tasks, Storage storage) {
         this.ui = ui;
@@ -91,7 +97,9 @@ public class Parser {
                         Ui.LINE_BREAK +
                         "Usage: deadline [description] /by [due date/time]");
             }
-            return new DeadlineCommand(tasks, deadlineName.toString(), endDate.toString());
+            // convert endDate to DateTime object
+            LocalDate dateTime = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
+            return new DeadlineCommand(tasks, deadlineName.toString().trim(), dateTime);
             // no break because return prevents fallthrough
         case event:
             int i = 1;

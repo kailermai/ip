@@ -1,7 +1,9 @@
-public class Deadline extends Task {
-    String endDate;
+import java.time.LocalDate;
 
-    public Deadline(String description, String endDate) {
+public class Deadline extends Task {
+    LocalDate endDate;
+
+    public Deadline(String description, LocalDate endDate) {
         super(description);
         this.endDate = endDate;
     }
@@ -18,6 +20,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (by:" + this.endDate + ")";
+        String reformattedDateTime = endDate.format(Parser.FORMATTER_TO);
+        return super.toString() + " (by: " + reformattedDateTime + ")";
     }
 }
