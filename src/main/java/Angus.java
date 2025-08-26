@@ -95,14 +95,7 @@ public class Angus {
                                 LINE_SEPARATOR +
                                 "Usage: todo [description]");
                     }
-                    ToDo newTodo = new ToDo(todoName.toString());
-                    tasks.add(newTodo);
-                    message = angusResponse("Angus has added this task:" +
-                            LINE_SEPARATOR +
-                            "\t" + newTodo +
-                            LINE_SEPARATOR +
-                            "You now have " + tasks.toArray().length + " tasks in the list");
-                    System.out.println(message);
+                    tasks.addTodo(todoName.toString());
                     break;
                 case deadline:
                     int j = 1;

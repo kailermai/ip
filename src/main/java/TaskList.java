@@ -39,4 +39,10 @@ public class TaskList {
         boolean result = curTask.markNotDone();
         ui.printUnmarkTask(result, curTask);
     }
+
+    public void addTodo(String todoName) {
+        ToDo newTodo = new ToDo(todoName);
+        taskList.add(newTodo, taskList.size());
+
+    }
 }

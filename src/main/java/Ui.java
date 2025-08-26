@@ -65,4 +65,13 @@ public class Ui {
         }
         System.out.println(angusResponse(message));
     }
+
+    public void printAddTodo(ToDo newTodo, int taskListLength) {
+        String message = angusResponse("Angus has added this task:" +
+                LINE_SEPARATOR +
+                "\t" + newTodo +
+                LINE_SEPARATOR +
+                "You now have " + taskListLength + " tasks in the list");
+        System.out.println(message);
+    }
 }
