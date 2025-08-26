@@ -182,16 +182,10 @@ public class Angus {
                     break;
                 }
             } catch (IllegalArgumentException e) {
-                message = "Angus does not know what that means :<" +
-                        LINE_SEPARATOR +
-                        "Try any of the following commands:" +
-                        LINE_SEPARATOR +
-                        Arrays.asList(Commands.values());
-                System.out.println(angusResponse(message));
+                ui.printUnknownCommand();
             }
             catch (AngusException e) {
-                message = angusResponse("[ERROR] " + e.getMessage());
-                System.out.println(message);
+                ui.printError(e.getMessage());
             }
         }
         ui.goodbyeMessage();

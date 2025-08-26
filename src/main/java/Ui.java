@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 public class Ui {
@@ -19,6 +20,20 @@ public class Ui {
     public void goodbyeMessage() {
         String goodbyeText = "Goodbye. Hope to see you again soon!";
         System.out.println(angusResponse(goodbyeText));
+    }
+
+    public void printUnknownCommand() {
+        String message = "Angus does not know what that means :<" +
+                LINE_BREAK +
+                "Try any of the following commands:" +
+                LINE_BREAK +
+                Arrays.asList(Angus.Commands.values());
+        System.out.println(angusResponse(message));
+    }
+
+    public void printError(String errorMessage) {
+        String message = angusResponse("[ERROR] " + errorMessage);
+        System.out.println(message);
     }
 
     public void printTaskList(List<Task> taskList) {
