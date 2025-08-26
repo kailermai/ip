@@ -1,9 +1,9 @@
 	____________________________________________________________
-	Hello! I'm Angus o_O
+	Hello! I'm angus.Angus o_O
 	What can I do for you today?
 	____________________________________________________________
 	____________________________________________________________
-	Angus has added this task:
+	angus.Angus has added this task:
 		[T][ ] borrow book
 	You now have 1 tasks in the list
 	____________________________________________________________
@@ -12,12 +12,12 @@
 	1.[T][ ] borrow book
 	____________________________________________________________
 	____________________________________________________________
-	Angus has added this deadline:
+	angus.Angus has added this deadline:
 		[D][ ] return book (by: Sunday)
 	You now have 2 tasks in the list
 	____________________________________________________________
 	____________________________________________________________
-	Angus has added this event:
+	angus.Angus has added this event:
 		[E][ ] project meeting (from: Mon 2pm to: 4pm)
 	You now have 3 tasks in the list
 	____________________________________________________________
