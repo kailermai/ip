@@ -22,6 +22,8 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (from: " + this.startDate + " to: " + this.endDate + ")";
+        String reformattedStartDate = startDate.format(Parser.FORMATTER_TO);
+        String reformattedEndDate = endDate.format(Parser.FORMATTER_TO);
+        return super.toString() + " (from: " + reformattedStartDate + " to: " + reformattedEndDate + ")";
     }
 }
