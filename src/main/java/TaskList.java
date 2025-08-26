@@ -15,7 +15,7 @@ public class TaskList {
         if (taskList.isEmpty()) {
             throw new AngusException("Your task list is empty!");
         }
-        ui.displayTaskList(this.taskList);
+        ui.printTaskList(this.taskList);
     }
 
     public void markTask(int taskNum) throws AngusException {
@@ -26,6 +26,17 @@ public class TaskList {
         }
         Task curTask = taskList.get(taskNum);
         boolean result = curTask.markDone();
-        ui.displayMarkTask(result, curTask);
+        ui.printMarkTask(result, curTask);
+    }
+
+    public void unmarkTask(int taskNum) throws AngusException {
+        if (taskNum >= taskList.toArray().length) {
+            throw new AngusException("Task does not exist!" +
+                    LINE_SEPARATOR +
+                    "Usage: unmark [task number]");
+        }
+        Task curTask = taskList.get(taskNum);
+        boolean result = curTask.markNotDone();
+        ui.printUnmarkTask(result, curTask);
     }
 }

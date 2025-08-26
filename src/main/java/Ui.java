@@ -22,7 +22,7 @@ public class Ui {
         System.out.println(angusResponse(goodbyeText));
     }
 
-    public void displayTaskList(List<Task> taskList) {
+    public void printTaskList(List<Task> taskList) {
         Task curTask;
         StringBuilder list = new StringBuilder();
         list.append("Here are your tasks:\n\t");
@@ -38,7 +38,7 @@ public class Ui {
         System.out.println(angusResponse(list.toString()));
     }
 
-    public void displayMarkTask(boolean result, Task curTask) {
+    public void printMarkTask(boolean result, Task curTask) {
         String message;
         if (result) {
             message = "Angus has marked this task as done!"
@@ -46,6 +46,20 @@ public class Ui {
                     + "\t" + curTask;
         } else {
             message = "This task is already marked as done!"
+                    + LINE_SEPARATOR
+                    + "\t" + curTask;
+        }
+        System.out.println(angusResponse(message));
+    }
+
+    public void printUnmarkTask(boolean result, Task curTask) {
+        String message;
+        if (result) {
+            message = "Angus has marked this task as NOT done!"
+                    + LINE_SEPARATOR
+                    + "\t" + curTask;
+        } else {
+            message = "This task is already marked as NOT done!"
                     + LINE_SEPARATOR
                     + "\t" + curTask;
         }

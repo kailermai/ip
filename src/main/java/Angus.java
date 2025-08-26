@@ -40,8 +40,6 @@ public class Angus {
             String[] commandList = command.split(" ");
             String message;
             int taskNum;
-            Task curTask;
-            boolean result;
             StringBuilder endDate;
 
             try {
@@ -85,23 +83,7 @@ public class Angus {
                                 LINE_SEPARATOR +
                                 "Usage: unmark [task number]");
                     }
-                    if (taskNum >= tasks.toArray().length) {
-                        throw new AngusException("Task does not exist!" +
-                                LINE_SEPARATOR +
-                                "Usage: unmark [task number]");
-                    }
-                    curTask = tasks.get(taskNum);
-                    result = curTask.markNotDone();
-                    if (result) {
-                        message = "Angus has marked this task as NOT done!"
-                                + LINE_SEPARATOR
-                                + "\t" + curTask;
-                    } else {
-                        message = "This task is already marked as NOT done!"
-                                + LINE_SEPARATOR
-                                + "\t" + curTask;
-                    }
-                    System.out.println(angusResponse(message));
+                    tasks.unmarkTask(taskNum);
                     break;
                 case todo:
                     StringBuilder todoName = new StringBuilder();
