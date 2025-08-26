@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Parser {
@@ -91,15 +90,21 @@ public class Parser {
             if (deadlineName.isEmpty()) {
                 throw new AngusException("Deadline description cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: deadline [description] /by [due date]");
+                        "Usage: deadline [description] /by yyyy-mm-dd");
             } else if (endDate.isEmpty()) {
                 throw new AngusException("Deadline due date cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: deadline [description] /by [due date/time]");
+                        "Usage: deadline [description] /by yyyy-mm-dd");
             }
             // convert endDate to DateTime object
-            LocalDate dateTime = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
-            return new DeadlineCommand(tasks, deadlineName.toString().trim(), dateTime);
+            try {
+                LocalDate dateTime = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
+                return new DeadlineCommand(tasks, deadlineName.toString().trim(), dateTime);
+            } catch (RuntimeException e) {
+                throw new AngusException("Incorrect date format!" +
+                        Ui.LINE_BREAK +
+                        "Usage: deadline [description] /by yyyy-mm-dd");
+            }
             // no break because return prevents fallthrough
         case event:
             int i = 1;
@@ -128,19 +133,25 @@ public class Parser {
             if (eventName.isEmpty()) {
                 throw new AngusException("Event description cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: event [description] /from [start date/time] /to [end date/time]");
+                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             } else if (startDate.isEmpty()) {
                 throw new AngusException("Event start date cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: event [description] /from [start date/time] /to [end date/time]");
+                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             } else if (endDate.isEmpty()) {
                 throw new AngusException("Event end date cannot be empty!" +
                         Ui.LINE_BREAK +
-                        "Usage: event [description] /from [start date/time] /to [end date/time]");
+                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             }
-            LocalDate formattedStartDate = LocalDate.parse(startDate.toString().trim(), FORMATTER_FROM);
-            LocalDate formattedEndDate = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
-            return new EventCommand(tasks, eventName.toString().trim(), formattedStartDate, formattedEndDate);
+            try {
+                LocalDate formattedStartDate = LocalDate.parse(startDate.toString().trim(), FORMATTER_FROM);
+                LocalDate formattedEndDate = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
+                return new EventCommand(tasks, eventName.toString().trim(), formattedStartDate, formattedEndDate);
+            } catch (RuntimeException e) {
+                throw new AngusException("Incorrect date format!" +
+                        Ui.LINE_BREAK +
+                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
+            }
             // no break because return prevents fallthrough
         case delete:
             if (commandList.length != 2) {
