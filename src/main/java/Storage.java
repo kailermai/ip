@@ -22,15 +22,28 @@ public class Storage {
                 Task.TaskTypes taskType = Task.TaskTypes.valueOf(taskDetails[0]);
                 switch (taskType) {
                 case T:
-
+                    ToDo toDo = new ToDo(taskDetails[2]);
+                    if (taskDetails[1].equals("1")) {
+                        toDo.markDone();
+                    }
+                    tmp.add(toDo);
                 case D:
-
+                    Deadline deadline = new Deadline(taskDetails[2], taskDetails[3]);
+                    if (taskDetails[1].equals("1")) {
+                        deadline.markDone();
+                    }
+                    tmp.add(deadline);
                 case E:
+                    Event event = new Event(taskDetails[2], taskDetails[3], taskDetails[4]);
+                    if (taskDetails[1].equals("1")) {
+                        event.markDone();
+                    }
+                    tmp.add(event);
                 }
             }
             return tmp;
         } catch (FileNotFoundException e) {
-            throw new AngusException("");
+            throw new AngusException("No save data found! Generating a new save...");
         }
     }
 }
