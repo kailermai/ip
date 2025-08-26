@@ -12,14 +12,6 @@ public class Angus {
         this.parser = new Parser(ui);
     }
 
-    private final static String HORIZONTAL_LINE =
-            "____________________________________________________________";
-    private final static String LINE_SEPARATOR = "\n\t";
-
-    public static String angusResponse(String text) {
-        return "\t" + HORIZONTAL_LINE + LINE_SEPARATOR + text + LINE_SEPARATOR + HORIZONTAL_LINE;
-    }
-
     public void run() {
         boolean isExit = false;
         ui.printGreetingsMessage();

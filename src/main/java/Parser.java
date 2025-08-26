@@ -1,8 +1,10 @@
 public class Parser {
-    private Ui ui;
+    private final Ui ui;
+    private final TaskList tasks;
 
-    public Parser(Ui ui) {
+    public Parser(Ui ui, TaskList tasks) {
         this.ui = ui;
+        this.tasks = tasks;
     }
 
     public Commands parse(String fullCommand) throws AngusException {
@@ -13,12 +15,12 @@ public class Parser {
             return new ByeCommand(ui);
             break;
         case list:
-            tasks.getTaskList();
+            return new ListCommand(tasks);
             break;
         case mark:
             if (commandList.length != 2) {
                 throw new AngusException("Wrong usage of mark!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: mark [task number]");
             }
 
@@ -27,7 +29,7 @@ public class Parser {
                 taskNum = Integer.parseInt(commandList[1]) - 1;
             } catch (NumberFormatException e) {
                 throw new AngusException("Wrong usage of mark!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: mark [task number]");
             }
             tasks.markTask(taskNum);
@@ -35,7 +37,7 @@ public class Parser {
         case unmark:
             if (commandList.length != 2) {
                 throw new AngusException("Wrong usage of unmark!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: unmark [task number]");
             }
 
@@ -44,7 +46,7 @@ public class Parser {
                 taskNum = Integer.parseInt(commandList[1]) - 1;
             } catch (NumberFormatException e) {
                 throw new AngusException("Wrong usage of unmark!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: unmark [task number]");
             }
             tasks.unmarkTask(taskNum);
@@ -56,7 +58,7 @@ public class Parser {
             }
             if (todoName.isEmpty()) {
                 throw new AngusException("Description of a ToDo cannot be empty!"+
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: todo [description]");
             }
             tasks.addTodo(todoName.toString());
@@ -79,11 +81,11 @@ public class Parser {
 
             if (deadlineName.isEmpty()) {
                 throw new AngusException("Deadline description cannot be empty!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: deadline [description] /by [due date]");
             } else if (endDate.isEmpty()) {
                 throw new AngusException("Deadline due date cannot be empty!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: deadline [description] /by [due date/time]");
             }
             tasks.addDeadline(deadlineName.toString(), endDate.toString());
@@ -114,15 +116,15 @@ public class Parser {
 
             if (eventName.isEmpty()) {
                 throw new AngusException("Event description cannot be empty!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: event [description] /from [start date/time] /to [end date/time]");
             } else if (startDate.isEmpty()) {
                 throw new AngusException("Event start date cannot be empty!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: event [description] /from [start date/time] /to [end date/time]");
             } else if (endDate.isEmpty()) {
                 throw new AngusException("Event end date cannot be empty!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: event [description] /from [start date/time] /to [end date/time]");
             }
             tasks.addEvent(eventName.toString(), startDate.toString(), endDate.toString());
@@ -130,7 +132,7 @@ public class Parser {
         case delete:
             if (commandList.length != 2) {
                 throw new AngusException("Wrong usage of delete!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: delete [task number]");
             }
 
@@ -139,7 +141,7 @@ public class Parser {
                 taskNum = Integer.parseInt(commandList[1]) - 1;
             } catch (NumberFormatException e) {
                 throw new AngusException("Wrong usage of delete!" +
-                        LINE_SEPARATOR +
+                        Ui.LINE_BREAK +
                         "Usage: delete [task number]");
             }
             tasks.deleteTask(taskNum);
