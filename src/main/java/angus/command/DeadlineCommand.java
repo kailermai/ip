@@ -1,9 +1,9 @@
 package angus.command;
 
+import java.time.LocalDate;
+
 import angus.exception.AngusException;
 import angus.task.TaskList;
-
-import java.time.LocalDate;
 
 /**
  * Represents the command to add a Deadline Task to the TaskList.

@@ -1,13 +1,5 @@
 package angus.storage;
 
-import angus.exception.AngusException;
-import angus.task.Deadline;
-import angus.task.Event;
-import angus.task.Task;
-import angus.task.TaskList;
-import angus.task.ToDo;
-import angus.ui.Parser;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -17,6 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import angus.exception.AngusException;
+import angus.task.Deadline;
+import angus.task.Event;
+import angus.task.Task;
+import angus.task.TaskList;
+import angus.task.ToDo;
+import angus.ui.Parser;
+
 /**
  * Handles the reading and writing of tasks to a local storage file.
  * <p>
@@ -25,7 +25,7 @@ import java.util.Scanner;
  * the chatbot is terminated.
  */
 public class Storage {
-    String filePath;
+    private final String filePath;
 
     /**
      * Constructs a new instance of the Storage class with the specified storage file path.
@@ -77,6 +77,8 @@ public class Storage {
                     }
                     tmp.add(event);
                     break;
+                default:
+                    throw new AngusException("Unknown Error while creating task!");
                 }
             }
             return tmp;

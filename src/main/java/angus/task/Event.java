@@ -1,8 +1,8 @@
 package angus.task;
 
-import angus.ui.Parser;
-
 import java.time.LocalDate;
+
+import angus.ui.Parser;
 
 /**
  * Represents a task with a start and end date.
@@ -10,7 +10,8 @@ import java.time.LocalDate;
  * An event stores a description and a start and end date to the task.
  */
 public class Event extends Task {
-    LocalDate startDate, endDate;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
 
     /**
      * Constructs a new event task.

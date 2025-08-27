@@ -23,11 +23,11 @@ import angus.task.TaskList;
  * before returning the appropriate command.
  */
 public class Parser {
+    public static final DateTimeFormatter FORMATTER_FROM = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter FORMATTER_TO = DateTimeFormatter.ofPattern("MMM-dd-yyyy");
     private final Ui ui;
     private final TaskList tasks;
     private final Storage storage;
-    public static DateTimeFormatter FORMATTER_FROM = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    public static DateTimeFormatter FORMATTER_TO = DateTimeFormatter.ofPattern("MMM-dd-yyyy");
 
     /**
      * Creates a parser to be used by Angus.
@@ -63,34 +63,34 @@ public class Parser {
             // no break because return prevents fallthrough
         case mark:
             if (commandList.length != 2) {
-                throw new AngusException("Wrong usage of mark!" +
-                        Ui.LINE_BREAK +
-                        "Usage: mark [task number]");
+                throw new AngusException("Wrong usage of mark!"
+                        + Ui.LINE_BREAK
+                        + "Usage: mark [task number]");
             }
             // Handles case: mark [non integer]
             try {
                 taskNum = Integer.parseInt(commandList[1]) - 1;
             } catch (NumberFormatException e) {
-                throw new AngusException("Wrong usage of mark!" +
-                        Ui.LINE_BREAK +
-                        "Usage: mark [task number]");
+                throw new AngusException("Wrong usage of mark!"
+                        + Ui.LINE_BREAK
+                        + "Usage: mark [task number]");
             }
             return new MarkCommand(tasks, taskNum);
             // no break because return prevents fallthrough
         case unmark:
             if (commandList.length != 2) {
-                throw new AngusException("Wrong usage of unmark!" +
-                        Ui.LINE_BREAK +
-                        "Usage: unmark [task number]");
+                throw new AngusException("Wrong usage of unmark!"
+                        + Ui.LINE_BREAK
+                        + "Usage: unmark [task number]");
             }
 
             // Handles case: unmark [non integer]
             try {
                 taskNum = Integer.parseInt(commandList[1]) - 1;
             } catch (NumberFormatException e) {
-                throw new AngusException("Wrong usage of unmark!" +
-                        Ui.LINE_BREAK +
-                        "Usage: unmark [task number]");
+                throw new AngusException("Wrong usage of unmark!"
+                        + Ui.LINE_BREAK
+                        + "Usage: unmark [task number]");
             }
             return new UnmarkCommand(tasks, taskNum);
             // no break because return prevents fallthrough
@@ -100,9 +100,9 @@ public class Parser {
                 todoName.append(" ").append(commandList[i]);
             }
             if (todoName.isEmpty()) {
-                throw new AngusException("Description of a ToDo cannot be empty!"+
-                        Ui.LINE_BREAK +
-                        "Usage: todo [description]");
+                throw new AngusException("Description of a ToDo cannot be empty!"
+                        + Ui.LINE_BREAK
+                        + "Usage: todo [description]");
             }
             return new TodoCommand(tasks, todoName.toString().trim());
             // no break because return prevents fallthrough
@@ -123,22 +123,22 @@ public class Parser {
             }
 
             if (deadlineName.isEmpty()) {
-                throw new AngusException("Deadline description cannot be empty!" +
-                        Ui.LINE_BREAK +
-                        "Usage: deadline [description] /by yyyy-mm-dd");
+                throw new AngusException("Deadline description cannot be empty!"
+                        + Ui.LINE_BREAK
+                        + "Usage: deadline [description] /by yyyy-mm-dd");
             } else if (endDate.isEmpty()) {
-                throw new AngusException("Deadline due date cannot be empty!" +
-                        Ui.LINE_BREAK +
-                        "Usage: deadline [description] /by yyyy-mm-dd");
+                throw new AngusException("Deadline due date cannot be empty!"
+                        + Ui.LINE_BREAK
+                        + "Usage: deadline [description] /by yyyy-mm-dd");
             }
             // convert endDate to DateTime object
             try {
                 LocalDate dateTime = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
                 return new DeadlineCommand(tasks, deadlineName.toString().trim(), dateTime);
             } catch (RuntimeException e) {
-                throw new AngusException("Incorrect date format!" +
-                        Ui.LINE_BREAK +
-                        "Usage: deadline [description] /by yyyy-mm-dd");
+                throw new AngusException("Incorrect date format!"
+                        + Ui.LINE_BREAK
+                        + "Usage: deadline [description] /by yyyy-mm-dd");
             }
             // no break because return prevents fallthrough
         case event:
@@ -153,7 +153,7 @@ public class Parser {
 
             i++;
 
-            while (i < commandList.length && !commandList[i].equals("/to")){
+            while (i < commandList.length && !commandList[i].equals("/to")) {
                 startDate.append(" ").append(commandList[i]);
                 i++;
             }
@@ -166,42 +166,42 @@ public class Parser {
             }
 
             if (eventName.isEmpty()) {
-                throw new AngusException("Event description cannot be empty!" +
-                        Ui.LINE_BREAK +
-                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
+                throw new AngusException("Event description cannot be empty!"
+                        + Ui.LINE_BREAK
+                        + "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             } else if (startDate.isEmpty()) {
-                throw new AngusException("Event start date cannot be empty!" +
-                        Ui.LINE_BREAK +
-                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
+                throw new AngusException("Event start date cannot be empty!"
+                        + Ui.LINE_BREAK
+                        + "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             } else if (endDate.isEmpty()) {
-                throw new AngusException("Event end date cannot be empty!" +
-                        Ui.LINE_BREAK +
-                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
+                throw new AngusException("Event end date cannot be empty!"
+                        + Ui.LINE_BREAK
+                        + "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             }
             try {
                 LocalDate formattedStartDate = LocalDate.parse(startDate.toString().trim(), FORMATTER_FROM);
                 LocalDate formattedEndDate = LocalDate.parse(endDate.toString().trim(), FORMATTER_FROM);
                 return new EventCommand(tasks, eventName.toString().trim(), formattedStartDate, formattedEndDate);
             } catch (RuntimeException e) {
-                throw new AngusException("Incorrect date format!" +
-                        Ui.LINE_BREAK +
-                        "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
+                throw new AngusException("Incorrect date format!"
+                        + Ui.LINE_BREAK
+                        + "Usage: event [description] /from yyyy-mm-dd /to yyyy-mm-dd");
             }
             // no break because return prevents fallthrough
         case delete:
             if (commandList.length != 2) {
-                throw new AngusException("Wrong usage of delete!" +
-                        Ui.LINE_BREAK +
-                        "Usage: delete [task number]");
+                throw new AngusException("Wrong usage of delete!"
+                        + Ui.LINE_BREAK
+                        + "Usage: delete [task number]");
             }
 
             // Handles case: delete [non integer]
             try {
                 taskNum = Integer.parseInt(commandList[1]) - 1;
             } catch (NumberFormatException e) {
-                throw new AngusException("Wrong usage of delete!" +
-                        Ui.LINE_BREAK +
-                        "Usage: delete [task number]");
+                throw new AngusException("Wrong usage of delete!"
+                        + Ui.LINE_BREAK
+                        + "Usage: delete [task number]");
             }
             return new DeleteCommand(tasks, taskNum);
             // no break because return prevents fallthrough

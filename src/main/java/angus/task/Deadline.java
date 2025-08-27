@@ -1,8 +1,8 @@
 package angus.task;
 
-import angus.ui.Parser;
-
 import java.time.LocalDate;
+
+import angus.ui.Parser;
 
 /**
  * Represents a task with a deadline.
@@ -10,7 +10,7 @@ import java.time.LocalDate;
  * A deadline stores a description and an end date to the task.
  */
 public class Deadline extends Task {
-    LocalDate endDate;
+    private final LocalDate endDate;
 
     /**
      * Constructs a new Deadline task.
