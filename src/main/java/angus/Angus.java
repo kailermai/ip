@@ -8,7 +8,7 @@ import angus.ui.Parser;
 import angus.ui.Ui;
 
 /**
- * Represents the entry point of the chatbot application
+ * Represents the entry point of the chatbot application.
  */
 public class Angus {
     private final Ui ui;
@@ -17,8 +17,8 @@ public class Angus {
     private Storage storage;
 
     /**
-     * Constructs a new instance of Angus with the given file path
-     * @param filePath the path to the storage file to save tasks
+     * Constructs a new instance of Angus with the given file path.
+     * @param filePath The path to the storage file to save tasks.
      */
     public Angus(String filePath) {
         this.storage = new Storage(filePath);
