@@ -1,9 +1,9 @@
 package angus.command;
 
+import java.time.LocalDate;
+
 import angus.exception.AngusException;
 import angus.task.TaskList;
-
-import java.time.LocalDate;
 
 public class DeadlineCommand extends Commands {
     private final TaskList tasks;
