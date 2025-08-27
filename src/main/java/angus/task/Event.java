@@ -1,11 +1,12 @@
 package angus.task;
 
-import angus.ui.Parser;
-
 import java.time.LocalDate;
 
+import angus.ui.Parser;
+
 public class Event extends Task {
-    LocalDate startDate, endDate;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
 
     public Event(String description, LocalDate startDate, LocalDate endDate) {
         super(description);

@@ -1,13 +1,5 @@
 package angus.storage;
 
-import angus.exception.AngusException;
-import angus.task.Deadline;
-import angus.task.Event;
-import angus.task.Task;
-import angus.task.TaskList;
-import angus.task.ToDo;
-import angus.ui.Parser;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -17,8 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import angus.exception.AngusException;
+import angus.task.Deadline;
+import angus.task.Event;
+import angus.task.Task;
+import angus.task.TaskList;
+import angus.task.ToDo;
+import angus.ui.Parser;
+
 public class Storage {
-    String filePath;
+    private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -58,6 +58,8 @@ public class Storage {
                     }
                     tmp.add(event);
                     break;
+                default:
+                    throw new AngusException("Unknown Error while creating task!");
                 }
             }
             return tmp;

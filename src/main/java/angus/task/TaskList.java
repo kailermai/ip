@@ -1,11 +1,11 @@
 package angus.task;
 
-import angus.exception.AngusException;
-import angus.ui.Ui;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import angus.exception.AngusException;
+import angus.ui.Ui;
 
 public class TaskList {
     private final List<Task> taskList;
@@ -38,9 +38,9 @@ public class TaskList {
 
     public void markTask(int taskNum) throws AngusException {
         if (taskNum >= taskList.toArray().length) {
-            throw new AngusException("Task does not exist!" +
-                    Ui.LINE_BREAK +
-                    "Usage: mark [task number]");
+            throw new AngusException("Task does not exist!"
+                    + Ui.LINE_BREAK
+                    + "Usage: mark [task number]");
         }
         Task curTask = taskList.get(taskNum);
         boolean result = curTask.markDone();
@@ -49,9 +49,9 @@ public class TaskList {
 
     public void unmarkTask(int taskNum) throws AngusException {
         if (taskNum >= taskList.toArray().length) {
-            throw new AngusException("Task does not exist!" +
-                    Ui.LINE_BREAK +
-                    "Usage: unmark [task number]");
+            throw new AngusException("Task does not exist!"
+                    + Ui.LINE_BREAK
+                    + "Usage: unmark [task number]");
         }
         Task curTask = taskList.get(taskNum);
         boolean result = curTask.markNotDone();
@@ -78,9 +78,9 @@ public class TaskList {
 
     public void deleteTask(int taskNum) throws AngusException {
         if (taskNum >= taskList.size()) {
-            throw new AngusException("Task does not exist!" +
-                    Ui.LINE_BREAK +
-                    "Usage: delete [task number]");
+            throw new AngusException("Task does not exist!"
+                    + Ui.LINE_BREAK
+                    + "Usage: delete [task number]");
         }
         Task removedTask = taskList.get(taskNum);
         taskList.remove(taskNum);

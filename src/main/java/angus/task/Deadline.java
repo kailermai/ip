@@ -1,11 +1,11 @@
 package angus.task;
 
-import angus.ui.Parser;
-
 import java.time.LocalDate;
 
+import angus.ui.Parser;
+
 public class Deadline extends Task {
-    LocalDate endDate;
+    private final LocalDate endDate;
 
     public Deadline(String description, LocalDate endDate) {
         super(description);
