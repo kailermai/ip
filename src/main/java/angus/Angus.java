@@ -7,12 +7,19 @@ import angus.task.TaskList;
 import angus.ui.Parser;
 import angus.ui.Ui;
 
+/**
+ * Represents the entry point of the chatbot application
+ */
 public class Angus {
     private final Ui ui;
     private TaskList tasks;
     private final Parser parser;
     private Storage storage;
 
+    /**
+     * Constructs a new instance of Angus with the given file path
+     * @param filePath the path to the storage file to save tasks
+     */
     public Angus(String filePath) {
         this.storage = new Storage(filePath);
         this.ui = new Ui();
@@ -25,6 +32,11 @@ public class Angus {
         this.parser = new Parser(ui, tasks, storage);
     }
 
+    /**
+     * Runs the program loop to continuously read user input until an exit command such as
+     * "bye" is inputted. Any errors thrown will be displayed on the console without
+     * terminating the program loop.
+     */
     public void run() {
         boolean isExit = false;
         ui.printGreetingsMessage();
