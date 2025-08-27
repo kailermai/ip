@@ -8,6 +8,7 @@ import angus.command.Commands;
 import angus.command.DeadlineCommand;
 import angus.command.DeleteCommand;
 import angus.command.EventCommand;
+import angus.command.FindCommand;
 import angus.command.ListCommand;
 import angus.command.MarkCommand;
 import angus.command.TodoCommand;
@@ -204,6 +205,14 @@ public class Parser {
                         + "Usage: delete [task number]");
             }
             return new DeleteCommand(tasks, taskNum);
+            // no break because return prevents fallthrough
+        case find:
+            if (commandList.length != 2) {
+                throw new AngusException("Wrong usage of find!"
+                        + Ui.LINE_BREAK
+                        + "Usage: find [filter keyword]");
+            }
+            return new FindCommand(tasks, commandList[1]);
             // no break because return prevents fallthrough
         default:
             throw new IllegalArgumentException();

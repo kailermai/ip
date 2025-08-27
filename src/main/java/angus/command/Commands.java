@@ -20,7 +20,8 @@ public abstract class Commands {
         todo,
         deadline,
         event,
-        delete
+        delete,
+        find
     }
 
     public abstract void execute() throws AngusException;
