@@ -15,19 +15,15 @@ public class Event extends Task {
 
     @Override
     public String saveTask() {
-        return "E//" + super.getCompleteStatus() + "//" +
-                super.description + "//" + this.startDate + "//" + this.endDate;
-    }
-
-    @Override
-    public String getStatusIcon() {
-        return "[E]" + super.getStatusIcon();
+        return "E//" + super.getCompleteStatus() + "//"
+                + super.description + "//" + this.startDate + "//" + this.endDate;
     }
 
     @Override
     public String toString() {
         String reformattedStartDate = startDate.format(Parser.FORMATTER_TO);
         String reformattedEndDate = endDate.format(Parser.FORMATTER_TO);
-        return super.toString() + " (from: " + reformattedStartDate + " to: " + reformattedEndDate + ")";
+        return "[E]" + super.toString() + " (from: " + reformattedStartDate + " to: " + reformattedEndDate
+                + ")";
     }
 }

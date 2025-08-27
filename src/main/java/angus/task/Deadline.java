@@ -18,13 +18,8 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String getStatusIcon() {
-        return "[D]" + super.getStatusIcon();
-    }
-
-    @Override
     public String toString() {
         String reformattedDateTime = endDate.format(Parser.FORMATTER_TO);
-        return super.toString() + " (by: " + reformattedDateTime + ")";
+        return "[D]" + super.toString() + " (by: " + reformattedDateTime + ")";
     }
 }
