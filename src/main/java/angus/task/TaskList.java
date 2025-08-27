@@ -86,4 +86,19 @@ public class TaskList {
         taskList.remove(taskNum);
         ui.printDeleteTask(removedTask, taskList.size());
     }
+
+    /**
+     * Finds the tasks that has the word filter in its description.
+     * @param filter The word to filter the list of tasks.
+     * @throws AngusException If the filtered tasks has no tasks.
+     */
+    public void findTask(String filter) throws AngusException {
+        List<Task> filteredTasks = this.taskList.stream()
+                .filter(t -> t.getDescription().contains(filter))
+                .toList();
+        if (filteredTasks.isEmpty()) {
+            throw new AngusException("There is no task with the matching keyword!");
+        }
+        ui.printFilteredTasks(filteredTasks);
+    }
 }

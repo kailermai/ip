@@ -134,4 +134,11 @@ public class Ui {
 
         System.out.println(angusResponse(message));
     }
+
+    /**
+     *
+     */
+    public void printFilteredTasks(List<Task> tasks) {
+
+    }
 }
