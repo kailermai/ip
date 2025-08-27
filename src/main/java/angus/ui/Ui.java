@@ -136,9 +136,22 @@ public class Ui {
     }
 
     /**
-     *
+     * Prints the list of tasks after filtering using a keyword.
+     * @param tasks The filtered list of tasks.
      */
     public void printFilteredTasks(List<Task> tasks) {
-
+        Task curTask;
+        StringBuilder list = new StringBuilder();
+        list.append("Here are the matching tasks in your list:\n\t");
+        for (int i = 0; i < tasks.size(); i++) {
+            curTask = tasks.get(i);
+            list.append(i + 1);
+            list.append(".");
+            list.append(curTask);
+            if (i < tasks.size() - 1) {
+                list.append(LINE_BREAK); // prevent empty line at the end
+            }
+        }
+        System.out.println(angusResponse(list.toString()));
     }
 }
