@@ -1,7 +1,10 @@
 package angus.ui;
 
-import angus.command.Commands;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import angus.command.ByeCommand;
+import angus.command.Commands;
 import angus.command.DeadlineCommand;
 import angus.command.DeleteCommand;
 import angus.command.EventCommand;
@@ -10,11 +13,8 @@ import angus.command.MarkCommand;
 import angus.command.TodoCommand;
 import angus.command.UnmarkCommand;
 import angus.exception.AngusException;
-import angus.task.TaskList;
 import angus.storage.Storage;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import angus.task.TaskList;
 
 public class Parser {
     private final Ui ui;

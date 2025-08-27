@@ -1,20 +1,20 @@
 package angus.ui;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
 import angus.command.Commands;
 import angus.task.Deadline;
 import angus.task.Event;
 import angus.task.Task;
 import angus.task.ToDo;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
 public class Ui {
-    private final Scanner input;
-    private final static String HORIZONTAL_LINE =
+    public static final String LINE_BREAK = "\n\t";
+    private static final String HORIZONTAL_LINE =
             "____________________________________________________________";
-    public final static String LINE_BREAK = "\n\t";
+    private final Scanner input;
 
     public Ui() {
         this.input = new Scanner(System.in);
