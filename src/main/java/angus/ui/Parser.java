@@ -16,6 +16,12 @@ import angus.exception.AngusException;
 import angus.storage.Storage;
 import angus.task.TaskList;
 
+/**
+ * Parses raw user input into specific commands that will be executed.
+ * <p>
+ * This class handles processing the user's input into commands, and validates if it is a valid command
+ * before returning the appropriate command.
+ */
 public class Parser {
     private final Ui ui;
     private final TaskList tasks;
@@ -23,12 +29,26 @@ public class Parser {
     public static DateTimeFormatter FORMATTER_FROM = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static DateTimeFormatter FORMATTER_TO = DateTimeFormatter.ofPattern("MMM-dd-yyyy");
 
+    /**
+     * Creates a parser to be used by Angus.
+     * @param ui The user interface for interacting with the user.
+     * @param tasks The current list of tasks the user has.
+     * @param storage The storage class to handle saving user's tasks.
+     */
     public Parser(Ui ui, TaskList tasks, Storage storage) {
         this.ui = ui;
         this.tasks = tasks;
         this.storage = storage;
     }
 
+    /**
+     * Parses user's input into Command objects.
+     * <p>
+     * The support commands are listed in the CommandList enumeration object in the Commands class.
+     * @param fullCommand The raw user input.
+     * @return The corresponding command based on the user input.
+     * @throws AngusException If the command is invalid.
+     */
     public Commands parse(String fullCommand) throws AngusException {
         String[] commandList = fullCommand.split(" ");
         Commands.CommandList mainCommand = Commands.CommandList.valueOf(commandList[0]);

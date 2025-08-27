@@ -10,6 +10,9 @@ import angus.task.Event;
 import angus.task.Task;
 import angus.task.ToDo;
 
+/**
+ * Handles interaction with the user through printing to the console.
+ */
 public class Ui {
     public static final String LINE_BREAK = "\n\t";
     private static final String HORIZONTAL_LINE =
@@ -28,6 +31,9 @@ public class Ui {
         return "\t" + HORIZONTAL_LINE + LINE_BREAK + text + LINE_BREAK + HORIZONTAL_LINE;
     }
 
+    /**
+     * Prints the greeting message.
+     */
     public void printGreetingsMessage() {
         String greetingsText = "Hello! I'm Angus o_O" +
                 LINE_BREAK +
@@ -35,11 +41,17 @@ public class Ui {
         System.out.println(angusResponse(greetingsText));
     }
 
+    /**
+     * Prints the goodbye message.
+     */
     public void printGoodbyeMessage() {
         String goodbyeText = "Goodbye. Hope to see you again soon!";
         System.out.println(angusResponse(goodbyeText));
     }
 
+    /**
+     * Prints the list of commands available to Angus when an unknown command is received.
+     */
     public void printUnknownCommand() {
         String message = "Angus does not know what that means :<" +
                 LINE_BREAK +
@@ -49,11 +61,21 @@ public class Ui {
         System.out.println(angusResponse(message));
     }
 
+    /**
+     * Prints the error message.
+     * @param errorMessage The error message received when an exception is thrown.
+     */
     public void printError(String errorMessage) {
         String message = angusResponse("[ERROR] " + errorMessage);
         System.out.println(message);
     }
 
+    /**
+     * Prints the current list of tasks the user has.
+     * <p>
+     * This method is implemented using a StringBuilder for efficient string concatenation.
+     * @param taskList The current list of tasks the user has.
+     */
     public void printTaskList(List<Task> taskList) {
         Task curTask;
         StringBuilder list = new StringBuilder();
@@ -70,6 +92,11 @@ public class Ui {
         System.out.println(angusResponse(list.toString()));
     }
 
+    /**
+     * Prints the result of marking a task.
+     * @param result True if marking a task is successful, otherwise False.
+     * @param curTask The task that is to be marked.
+     */
     public void printMarkTask(boolean result, Task curTask) {
         String message;
         if (result) {
@@ -84,6 +111,11 @@ public class Ui {
         System.out.println(angusResponse(message));
     }
 
+    /**
+     * Prints the result of unmarking a task.
+     * @param result True if unmarking a task is successful, otherwise False.
+     * @param curTask The task that is to be unmarked.
+     */
     public void printUnmarkTask(boolean result, Task curTask) {
         String message;
         if (result) {
@@ -98,6 +130,11 @@ public class Ui {
         System.out.println(angusResponse(message));
     }
 
+    /**
+     * Prints the result of adding a ToDo task to the list.
+     * @param newTodo The ToDo task that has been added.
+     * @param count The number of tasks in the list.
+     */
     public void printAddTodo(ToDo newTodo, int count) {
         String message = angusResponse("Angus has added this task:" +
                 LINE_BREAK +
@@ -107,6 +144,11 @@ public class Ui {
         System.out.println(message);
     }
 
+    /**
+     * Prints the result of adding a Deadline task to the list.
+     * @param newDeadline The Deadline task that has been added.
+     * @param count The number of tasks in the list.
+     */
     public void printAddDeadline(Deadline newDeadline, int count) {
         String message = angusResponse("Angus has added this deadline:" +
                 LINE_BREAK +
@@ -116,6 +158,11 @@ public class Ui {
         System.out.println(message);
     }
 
+    /**
+     * Prints the result of adding a Event task to the list.
+     * @param newEvent The Event task that has been added.
+     * @param count The number of tasks in the list.
+     */
     public void printAddEvent(Event newEvent, int count) {
         String message = angusResponse("Angus has added this event:" +
                 LINE_BREAK +
@@ -125,6 +172,11 @@ public class Ui {
         System.out.println(message);
     }
 
+    /**
+     * Prints the result of deleting the task, including the deleted task and the number of tasks left.
+     * @param removedTask The deleted task from the list.
+     * @param count THe number of tasks in the list.
+     */
     public void printDeleteTask(Task removedTask, int count) {
         String message = "All done! Angus has removed this task:" +
                 LINE_BREAK +
