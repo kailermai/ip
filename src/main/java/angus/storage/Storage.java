@@ -17,13 +17,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Handles the reading and writing of tasks to a local storage file.
+ * <p>
+ * The Storage class is responsible for loading tasks from the specified storage file
+ * when the chatbot is initialised, and saving the user's tasks to the storage file when
+ * the chatbot is terminated.
+ */
 public class Storage {
     String filePath;
 
+    /**
+     * Constructs a new instance of the Storage class with the specified storage file path.
+     * @param filePath The file path to the local storage file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the local storage file.
+     * <p>
+     * Each task is parsed into a task, which can either be a ToDo, Deadline or Event task.
+     * Task completion status is also preserved from the storage file.
+     * @return A list of task loaded from the local storage file.
+     * @throws AngusException If the local storage file is not found.
+     */
     public List<Task> load() throws AngusException {
         try {
             File f = new File(filePath);
@@ -66,6 +85,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Save all tasks in the given TaskList to the local storage file.
+     * <p>
+     * Each task is saved in a serialised format, with each field separated by //.
+     * @param tasks The current list of task the user has.
+     * @throws AngusException If the file cannot be written to.
+     */
     public void save(TaskList tasks) throws AngusException {
         try {
             FileWriter fw = new FileWriter(filePath);
