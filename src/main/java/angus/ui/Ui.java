@@ -14,7 +14,7 @@ import angus.task.ToDo;
  * Handles interaction with the user through printing to the console.
  */
 public class Ui {
-    public static final String LINE_BREAK = "\n\t";
+    public static final String LINE_BREAK = "\n";
     private static final String HORIZONTAL_LINE =
             "____________________________________________________________";
     private final Scanner input;
@@ -39,7 +39,7 @@ public class Ui {
                 + LINE_BREAK
                 + "What can I do for you today?";
         System.out.println(angusResponse(greetingsText));
-        return angusResponse(greetingsText);
+        return greetingsText;
     }
 
     /**
@@ -48,7 +48,7 @@ public class Ui {
     public String printGoodbyeMessage() {
         String goodbyeText = "Goodbye. Hope to see you again soon!";
         System.out.println(angusResponse(goodbyeText));
-        return angusResponse(goodbyeText);
+        return goodbyeText;
     }
 
     /**
@@ -61,7 +61,7 @@ public class Ui {
                 + LINE_BREAK
                 + Arrays.asList(Commands.CommandList.values());
         System.out.println(angusResponse(message));
-        return angusResponse(message);
+        return message;
     }
 
     /**
@@ -69,9 +69,9 @@ public class Ui {
      * @param errorMessage The error message received when an exception is thrown.
      */
     public String printError(String errorMessage) {
-        String message = angusResponse("[ERROR] " + errorMessage);
+        String message = "[ERROR] " + errorMessage;
         System.out.println(message);
-        return angusResponse(message);
+        return message;
     }
 
     /**
@@ -94,7 +94,7 @@ public class Ui {
             }
         }
         System.out.println(angusResponse(list.toString()));
-        return angusResponse(list.toString());
+        return list.toString();
     }
 
     /**
@@ -114,7 +114,7 @@ public class Ui {
                     + "\t" + curTask;
         }
         System.out.println(angusResponse(message));
-        return angusResponse(message);
+        return message;
     }
 
     /**
@@ -134,7 +134,7 @@ public class Ui {
                     + "\t" + curTask;
         }
         System.out.println(angusResponse(message));
-        return angusResponse(message);
+        return message;
     }
 
     /**
@@ -143,13 +143,13 @@ public class Ui {
      * @param count The number of tasks in the list.
      */
     public String printAddTodo(ToDo newTodo, int count) {
-        String message = angusResponse("Angus has added this task:"
+        String message = "Angus has added this task:"
                 + LINE_BREAK
                 + "\t" + newTodo
                 + LINE_BREAK
-                + "You now have " + count + " tasks in the list");
+                + "You now have " + count + " tasks in the list";
         System.out.println(message);
-        return angusResponse(message);
+        return message;
     }
 
     /**
@@ -158,13 +158,13 @@ public class Ui {
      * @param count The number of tasks in the list.
      */
     public String printAddDeadline(Deadline newDeadline, int count) {
-        String message = angusResponse("Angus has added this deadline:"
+        String message = "Angus has added this deadline:"
                 + LINE_BREAK
                 + "\t" + newDeadline
                 + LINE_BREAK
-                + "You now have " + count + " tasks in the list");
+                + "You now have " + count + " tasks in the list";
         System.out.println(message);
-        return angusResponse(message);
+        return message;
     }
 
     /**
@@ -173,13 +173,13 @@ public class Ui {
      * @param count The number of tasks in the list.
      */
     public String printAddEvent(Event newEvent, int count) {
-        String message = angusResponse("Angus has added this event:"
+        String message = "Angus has added this event:"
                 + LINE_BREAK
                 + "\t" + newEvent
                 + LINE_BREAK
-                + "You now have " + count + " tasks in the list");
+                + "You now have " + count + " tasks in the list";
         System.out.println(message);
-        return angusResponse(message);
+        return message;
     }
 
     /**
@@ -195,7 +195,7 @@ public class Ui {
                 + "You now have " + count + " tasks in the list";
 
         System.out.println(angusResponse(message));
-        return angusResponse(message);
+        return message;
     }
 
     /**
@@ -216,6 +216,6 @@ public class Ui {
             }
         }
         System.out.println(angusResponse(list.toString()));
-        return angusResponse(list.toString());
+        return list.toString();
     }
 }
