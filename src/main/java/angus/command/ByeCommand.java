@@ -29,9 +29,9 @@ public class ByeCommand extends Commands {
     }
 
     @Override
-    public void execute() throws AngusException {
+    public String execute() throws AngusException {
         storage.save(tasks);
-        ui.printGoodbyeMessage();
+        return ui.printGoodbyeMessage();
     }
 
     @Override

@@ -34,40 +34,44 @@ public class Ui {
     /**
      * Prints the greeting message.
      */
-    public void printGreetingsMessage() {
+    public String printGreetingsMessage() {
         String greetingsText = "Hello! I'm Angus o_O"
                 + LINE_BREAK
                 + "What can I do for you today?";
         System.out.println(angusResponse(greetingsText));
+        return angusResponse(greetingsText);
     }
 
     /**
      * Prints the goodbye message.
      */
-    public void printGoodbyeMessage() {
+    public String printGoodbyeMessage() {
         String goodbyeText = "Goodbye. Hope to see you again soon!";
         System.out.println(angusResponse(goodbyeText));
+        return angusResponse(goodbyeText);
     }
 
     /**
      * Prints the list of commands available to Angus when an unknown command is received.
      */
-    public void printUnknownCommand() {
+    public String printUnknownCommand() {
         String message = "Angus does not know what that means :<"
                 + LINE_BREAK
                 + "Try any of the following commands:"
                 + LINE_BREAK
                 + Arrays.asList(Commands.CommandList.values());
         System.out.println(angusResponse(message));
+        return angusResponse(message);
     }
 
     /**
      * Prints the error message.
      * @param errorMessage The error message received when an exception is thrown.
      */
-    public void printError(String errorMessage) {
+    public String printError(String errorMessage) {
         String message = angusResponse("[ERROR] " + errorMessage);
         System.out.println(message);
+        return angusResponse(message);
     }
 
     /**
@@ -76,7 +80,7 @@ public class Ui {
      * This method is implemented using a StringBuilder for efficient string concatenation.
      * @param taskList The current list of tasks the user has.
      */
-    public void printTaskList(List<Task> taskList) {
+    public String printTaskList(List<Task> taskList) {
         Task curTask;
         StringBuilder list = new StringBuilder();
         list.append("Here are your tasks:\n\t");
@@ -90,6 +94,7 @@ public class Ui {
             }
         }
         System.out.println(angusResponse(list.toString()));
+        return angusResponse(list.toString());
     }
 
     /**
@@ -97,7 +102,7 @@ public class Ui {
      * @param result True if marking a task is successful, otherwise False.
      * @param curTask The task that is to be marked.
      */
-    public void printMarkTask(boolean result, Task curTask) {
+    public String printMarkTask(boolean result, Task curTask) {
         String message;
         if (result) {
             message = "Angus has marked this task as done!"
@@ -109,6 +114,7 @@ public class Ui {
                     + "\t" + curTask;
         }
         System.out.println(angusResponse(message));
+        return angusResponse(message);
     }
 
     /**
@@ -116,7 +122,7 @@ public class Ui {
      * @param result True if unmarking a task is successful, otherwise False.
      * @param curTask The task that is to be unmarked.
      */
-    public void printUnmarkTask(boolean result, Task curTask) {
+    public String printUnmarkTask(boolean result, Task curTask) {
         String message;
         if (result) {
             message = "Angus has marked this task as NOT done!"
@@ -128,6 +134,7 @@ public class Ui {
                     + "\t" + curTask;
         }
         System.out.println(angusResponse(message));
+        return angusResponse(message);
     }
 
     /**
@@ -135,13 +142,14 @@ public class Ui {
      * @param newTodo The ToDo task that has been added.
      * @param count The number of tasks in the list.
      */
-    public void printAddTodo(ToDo newTodo, int count) {
+    public String printAddTodo(ToDo newTodo, int count) {
         String message = angusResponse("Angus has added this task:"
                 + LINE_BREAK
                 + "\t" + newTodo
                 + LINE_BREAK
                 + "You now have " + count + " tasks in the list");
         System.out.println(message);
+        return angusResponse(message);
     }
 
     /**
@@ -149,13 +157,14 @@ public class Ui {
      * @param newDeadline The Deadline task that has been added.
      * @param count The number of tasks in the list.
      */
-    public void printAddDeadline(Deadline newDeadline, int count) {
+    public String printAddDeadline(Deadline newDeadline, int count) {
         String message = angusResponse("Angus has added this deadline:"
                 + LINE_BREAK
                 + "\t" + newDeadline
                 + LINE_BREAK
                 + "You now have " + count + " tasks in the list");
         System.out.println(message);
+        return angusResponse(message);
     }
 
     /**
@@ -163,13 +172,14 @@ public class Ui {
      * @param newEvent The Event task that has been added.
      * @param count The number of tasks in the list.
      */
-    public void printAddEvent(Event newEvent, int count) {
+    public String printAddEvent(Event newEvent, int count) {
         String message = angusResponse("Angus has added this event:"
                 + LINE_BREAK
                 + "\t" + newEvent
                 + LINE_BREAK
                 + "You now have " + count + " tasks in the list");
         System.out.println(message);
+        return angusResponse(message);
     }
 
     /**
@@ -177,7 +187,7 @@ public class Ui {
      * @param removedTask The deleted task from the list.
      * @param count THe number of tasks in the list.
      */
-    public void printDeleteTask(Task removedTask, int count) {
+    public String printDeleteTask(Task removedTask, int count) {
         String message = "All done! Angus has removed this task:"
                 + LINE_BREAK
                 + "\t" + removedTask
@@ -185,13 +195,14 @@ public class Ui {
                 + "You now have " + count + " tasks in the list";
 
         System.out.println(angusResponse(message));
+        return angusResponse(message);
     }
 
     /**
      * Prints the list of tasks after filtering using a keyword.
      * @param tasks The filtered list of tasks.
      */
-    public void printFilteredTasks(List<Task> tasks) {
+    public String printFilteredTasks(List<Task> tasks) {
         Task curTask;
         StringBuilder list = new StringBuilder();
         list.append("Here are the matching tasks in your list:\n\t");
@@ -205,5 +216,6 @@ public class Ui {
             }
         }
         System.out.println(angusResponse(list.toString()));
+        return angusResponse(list.toString());
     }
 }

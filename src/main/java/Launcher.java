@@ -1,5 +1,3 @@
-package angus;
-
 import javafx.application.Application;
 
 /**

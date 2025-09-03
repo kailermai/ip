@@ -1,7 +1,6 @@
-package angus;
-
 import java.io.IOException;
 
+import angus.Angus;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,7 +21,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setAngus(angus);  // inject the Angus instance
+            fxmlLoader.<MainWindow>getController().setAngus(angus); // inject the Angus instance
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
