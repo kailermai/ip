@@ -6,6 +6,8 @@ import angus.storage.Storage;
 import angus.task.TaskList;
 import angus.ui.Parser;
 import angus.ui.Ui;
+import javafx.application.Platform;
+import javafx.stage.Stage;
 
 /**
  * Represents the entry point of the chatbot application.
@@ -50,12 +52,14 @@ public class Angus {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        boolean isExit = false;
         ui.printGreetingsMessage();
 
         try {
             Commands c = parser.parse(input);
-            isExit = c.isExit();
+            boolean isExit = c.isExit();
+            if (isExit) {
+                Platform.exit();
+            }
             return c.execute();
         } catch (IllegalArgumentException e) {
             return ui.printUnknownCommand();
