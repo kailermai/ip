@@ -83,7 +83,7 @@ public class Ui {
     public String printTaskList(List<Task> taskList) {
         Task curTask;
         StringBuilder list = new StringBuilder();
-        list.append("Here are your tasks:\n\t");
+        list.append("Here are your tasks:\n");
         for (int i = 0; i < taskList.size(); i++) {
             curTask = taskList.get(i);
             list.append(i + 1);
@@ -205,7 +205,7 @@ public class Ui {
     public String printFilteredTasks(List<Task> tasks) {
         Task curTask;
         StringBuilder list = new StringBuilder();
-        list.append("Here are the matching tasks in your list:\n\t");
+        list.append("Here are the matching tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             curTask = tasks.get(i);
             list.append(i + 1);
