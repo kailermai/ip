@@ -89,7 +89,7 @@ public class TaskList {
     public String addTodo(String todoName) {
         ToDo newTodo = new ToDo(todoName);
         taskList.add(newTodo);
-        ui.printAddTodo(newTodo, taskList.size());
+        return ui.printAddTodo(newTodo, taskList.size());
     }
 
     /**
@@ -100,7 +100,7 @@ public class TaskList {
     public String addDeadline(String deadlineName, LocalDate endDate) {
         Deadline newDeadline = new Deadline(deadlineName, endDate);
         taskList.add(newDeadline);
-        ui.printAddDeadline(newDeadline, taskList.size());
+        return ui.printAddDeadline(newDeadline, taskList.size());
     }
 
     /**
@@ -112,7 +112,7 @@ public class TaskList {
     public String addEvent(String eventName, LocalDate startDate, LocalDate endDate) {
         Event newEvent = new Event(eventName, startDate, endDate);
         taskList.add(newEvent);
-        ui.printAddEvent(newEvent, taskList.size());
+        return ui.printAddEvent(newEvent, taskList.size());
     }
 
     /**
@@ -128,7 +128,7 @@ public class TaskList {
         }
         Task removedTask = taskList.get(taskNum);
         taskList.remove(taskNum);
-        ui.printDeleteTask(removedTask, taskList.size());
+        return ui.printDeleteTask(removedTask, taskList.size());
     }
 
     /**
@@ -143,6 +143,6 @@ public class TaskList {
         if (filteredTasks.isEmpty()) {
             throw new AngusException("There is no task with the matching keyword!");
         }
-        ui.printFilteredTasks(filteredTasks);
+        return ui.printFilteredTasks(filteredTasks);
     }
 }

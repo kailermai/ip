@@ -24,8 +24,8 @@ public class MarkCommand extends Commands {
     }
 
     @Override
-    public void execute() throws AngusException {
-        tasks.markTask(taskNum);
+    public String execute() throws AngusException {
+        return tasks.markTask(taskNum);
     }
 
     @Override

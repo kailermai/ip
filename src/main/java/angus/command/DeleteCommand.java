@@ -24,8 +24,8 @@ public class DeleteCommand extends Commands {
     }
 
     @Override
-    public void execute() throws AngusException {
-        tasks.deleteTask(taskNum);
+    public String execute() throws AngusException {
+        return tasks.deleteTask(taskNum);
     }
 
     @Override

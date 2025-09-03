@@ -21,8 +21,8 @@ public class FindCommand extends Commands {
     }
 
     @Override
-    public void execute() throws AngusException {
-        tasks.findTask(this.filter);
+    public String execute() throws AngusException {
+        return tasks.findTask(this.filter);
     }
 
     @Override

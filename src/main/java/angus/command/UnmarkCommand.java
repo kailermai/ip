@@ -24,8 +24,8 @@ public class UnmarkCommand extends Commands {
     }
 
     @Override
-    public void execute() throws AngusException {
-        tasks.unmarkTask(taskNum);
+    public String execute() throws AngusException {
+        return tasks.unmarkTask(taskNum);
     }
 
     @Override

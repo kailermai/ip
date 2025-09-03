@@ -88,7 +88,7 @@ public class Angus {
         }
     }
 
-    public static void main(String[] args) {
-        new Angus("data/angus.Angus.txt").run();
-    }
+//    public static void main(String[] args) {
+//        new Angus("data/angus.Angus.txt").run();
+//    }
 }
