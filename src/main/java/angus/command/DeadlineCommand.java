@@ -30,8 +30,8 @@ public class DeadlineCommand extends Commands {
     }
 
     @Override
-    public void execute() throws AngusException {
-        tasks.addDeadline(deadlineName, endDate);
+    public String execute() throws AngusException {
+        return tasks.addDeadline(deadlineName, endDate);
     }
 
     @Override

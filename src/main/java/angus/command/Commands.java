@@ -24,6 +24,6 @@ public abstract class Commands {
         find
     }
 
-    public abstract void execute() throws AngusException;
+    public abstract String execute() throws AngusException;
     public abstract boolean isExit();
 }

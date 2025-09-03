@@ -24,8 +24,8 @@ public class TodoCommand extends Commands {
     }
 
     @Override
-    public void execute() throws AngusException {
-        tasks.addTodo(todoName);
+    public String execute() throws AngusException {
+        return tasks.addTodo(todoName);
     }
 
     @Override

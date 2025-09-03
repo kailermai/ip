@@ -43,11 +43,11 @@ public class TaskList {
         return taskList.size();
     }
 
-    public void getTaskList() throws AngusException {
+    public String getTaskList() throws AngusException {
         if (taskList.isEmpty()) {
             throw new AngusException("Your task list is empty!");
         }
-        ui.printTaskList(this.taskList);
+        return ui.printTaskList(this.taskList);
     }
 
     /**
@@ -55,7 +55,7 @@ public class TaskList {
      * @param taskNum Index of the task (0-th index).
      * @throws AngusException If the task index is invalid.
      */
-    public void markTask(int taskNum) throws AngusException {
+    public String markTask(int taskNum) throws AngusException {
         if (taskNum >= taskList.toArray().length) {
             throw new AngusException("Task does not exist!"
                     + Ui.LINE_BREAK
@@ -63,7 +63,7 @@ public class TaskList {
         }
         Task curTask = taskList.get(taskNum);
         boolean result = curTask.markDone();
-        ui.printMarkTask(result, curTask);
+        return ui.printMarkTask(result, curTask);
     }
 
     /**
@@ -71,7 +71,7 @@ public class TaskList {
      * @param taskNum Index of the task(0-th index)
      * @throws AngusException If the task index is invalid.
      */
-    public void unmarkTask(int taskNum) throws AngusException {
+    public String unmarkTask(int taskNum) throws AngusException {
         if (taskNum >= taskList.toArray().length) {
             throw new AngusException("Task does not exist!"
                     + Ui.LINE_BREAK
@@ -79,17 +79,17 @@ public class TaskList {
         }
         Task curTask = taskList.get(taskNum);
         boolean result = curTask.markNotDone();
-        ui.printUnmarkTask(result, curTask);
+        return ui.printUnmarkTask(result, curTask);
     }
 
     /**
      * Adds a new ToDo task to the list.
      * @param todoName The name of the ToDo.
      */
-    public void addTodo(String todoName) {
+    public String addTodo(String todoName) {
         ToDo newTodo = new ToDo(todoName);
         taskList.add(newTodo);
-        ui.printAddTodo(newTodo, taskList.size());
+        return ui.printAddTodo(newTodo, taskList.size());
     }
 
     /**
@@ -97,10 +97,10 @@ public class TaskList {
      * @param deadlineName The name of the deadline.
      * @param endDate The deadline's end date.
      */
-    public void addDeadline(String deadlineName, LocalDate endDate) {
+    public String addDeadline(String deadlineName, LocalDate endDate) {
         Deadline newDeadline = new Deadline(deadlineName, endDate);
         taskList.add(newDeadline);
-        ui.printAddDeadline(newDeadline, taskList.size());
+        return ui.printAddDeadline(newDeadline, taskList.size());
     }
 
     /**
@@ -109,10 +109,10 @@ public class TaskList {
      * @param startDate The start date of the event.
      * @param endDate The end date of the event.
      */
-    public void addEvent(String eventName, LocalDate startDate, LocalDate endDate) {
+    public String addEvent(String eventName, LocalDate startDate, LocalDate endDate) {
         Event newEvent = new Event(eventName, startDate, endDate);
         taskList.add(newEvent);
-        ui.printAddEvent(newEvent, taskList.size());
+        return ui.printAddEvent(newEvent, taskList.size());
     }
 
     /**
@@ -120,7 +120,7 @@ public class TaskList {
      * @param taskNum Index of the task to be deleted (0-th index)
      * @throws AngusException If the task index does not exist.
      */
-    public void deleteTask(int taskNum) throws AngusException {
+    public String deleteTask(int taskNum) throws AngusException {
         if (taskNum >= taskList.size()) {
             throw new AngusException("Task does not exist!"
                     + Ui.LINE_BREAK
@@ -128,7 +128,7 @@ public class TaskList {
         }
         Task removedTask = taskList.get(taskNum);
         taskList.remove(taskNum);
-        ui.printDeleteTask(removedTask, taskList.size());
+        return ui.printDeleteTask(removedTask, taskList.size());
     }
 
     /**
@@ -136,13 +136,13 @@ public class TaskList {
      * @param filter The word to filter the list of tasks.
      * @throws AngusException If the filtered tasks has no tasks.
      */
-    public void findTask(String filter) throws AngusException {
+    public String findTask(String filter) throws AngusException {
         List<Task> filteredTasks = this.taskList.stream()
                 .filter(t -> t.getDescription().contains(filter))
                 .toList();
         if (filteredTasks.isEmpty()) {
             throw new AngusException("There is no task with the matching keyword!");
         }
-        ui.printFilteredTasks(filteredTasks);
+        return ui.printFilteredTasks(filteredTasks);
     }
 }

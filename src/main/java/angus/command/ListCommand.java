@@ -21,8 +21,8 @@ public class ListCommand extends Commands {
     }
 
     @Override
-    public void execute() throws AngusException {
-        tasks.getTaskList();
+    public String execute() throws AngusException {
+        return tasks.getTaskList();
     }
 
     @Override

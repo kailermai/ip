@@ -32,8 +32,8 @@ public class EventCommand extends Commands {
     }
 
     @Override
-    public void execute() throws AngusException {
-        tasks.addEvent(eventName, startDate, endDate);
+    public String execute() throws AngusException {
+        return tasks.addEvent(eventName, startDate, endDate);
     }
 
     @Override
