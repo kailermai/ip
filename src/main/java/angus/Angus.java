@@ -20,7 +20,7 @@ public class Angus {
      * Default constructor for JavaFX
      */
     public Angus() {
-        this.storage = new Storage("data/angus.Angus.txt");
+        this.storage = new Storage("data/Angus.txt");
         this.ui = new Ui();
         try {
             this.tasks = new TaskList(ui, storage.load());
@@ -46,29 +46,6 @@ public class Angus {
         this.parser = new Parser(ui, tasks, storage);
     }
 
-//    /**
-//     * Runs the program loop to continuously read user input until an exit command such as
-//     * "bye" is inputted. Any errors thrown will be displayed on the console without
-//     * terminating the program loop.
-//     */
-//    public void run() {
-//        boolean isExit = false;
-//        ui.printGreetingsMessage();
-//
-//        while (!isExit) {
-//            try {
-//                String fullCommand = ui.readCommand();
-//                Commands c = parser.parse(fullCommand);
-//                c.execute();
-//                isExit = c.isExit();
-//            } catch (IllegalArgumentException e) {
-//                ui.printUnknownCommand();
-//            } catch (AngusException e) {
-//                ui.printError(e.getMessage());
-//            }
-//        }
-//    }
-
     /**
      * Generates a response for the user's chat message.
      */
@@ -77,8 +54,7 @@ public class Angus {
         ui.printGreetingsMessage();
 
         try {
-            String fullCommand = ui.readCommand();
-            Commands c = parser.parse(fullCommand);
+            Commands c = parser.parse(input);
             isExit = c.isExit();
             return c.execute();
         } catch (IllegalArgumentException e) {
@@ -87,8 +63,4 @@ public class Angus {
             return ui.printError(e.getMessage());
         }
     }
-
-//    public static void main(String[] args) {
-//        new Angus("data/angus.Angus.txt").run();
-//    }
 }
