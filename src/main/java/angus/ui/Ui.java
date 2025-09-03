@@ -11,7 +11,7 @@ import angus.task.Task;
 import angus.task.ToDo;
 
 /**
- * Handles interaction with the user through printing to the console.
+ * Handles interaction with the user through printing to the console and returning to GUI.
  */
 public class Ui {
     public static final String LINE_BREAK = "\n";
@@ -32,7 +32,7 @@ public class Ui {
     }
 
     /**
-     * Prints the greeting message.
+     * Prints and returns the greeting message.
      */
     public String printGreetingsMessage() {
         String greetingsText = "Hello! I'm Angus o_O"
@@ -43,7 +43,7 @@ public class Ui {
     }
 
     /**
-     * Prints the goodbye message.
+     * Prints and returns the goodbye message.
      */
     public String printGoodbyeMessage() {
         String goodbyeText = "Goodbye. Hope to see you again soon!";
@@ -52,7 +52,7 @@ public class Ui {
     }
 
     /**
-     * Prints the list of commands available to Angus when an unknown command is received.
+     * Prints and returns the list of commands available to Angus when an unknown command is received.
      */
     public String printUnknownCommand() {
         String message = "Angus does not know what that means :<"
@@ -65,7 +65,7 @@ public class Ui {
     }
 
     /**
-     * Prints the error message.
+     * Prints and returns the error message.
      * @param errorMessage The error message received when an exception is thrown.
      */
     public String printError(String errorMessage) {
@@ -75,7 +75,7 @@ public class Ui {
     }
 
     /**
-     * Prints the current list of tasks the user has.
+     * Prints and returns the current list of tasks the user has.
      * <p>
      * This method is implemented using a StringBuilder for efficient string concatenation.
      * @param taskList The current list of tasks the user has.
@@ -98,7 +98,7 @@ public class Ui {
     }
 
     /**
-     * Prints the result of marking a task.
+     * Prints and returns the result of marking a task.
      * @param result True if marking a task is successful, otherwise False.
      * @param curTask The task that is to be marked.
      */
@@ -118,7 +118,7 @@ public class Ui {
     }
 
     /**
-     * Prints the result of unmarking a task.
+     * Prints and returns the result of unmarking a task.
      * @param result True if unmarking a task is successful, otherwise False.
      * @param curTask The task that is to be unmarked.
      */
@@ -138,7 +138,7 @@ public class Ui {
     }
 
     /**
-     * Prints the result of adding a ToDo task to the list.
+     * Prints and returns the result of adding a ToDo task to the list.
      * @param newTodo The ToDo task that has been added.
      * @param count The number of tasks in the list.
      */
@@ -153,7 +153,7 @@ public class Ui {
     }
 
     /**
-     * Prints the result of adding a Deadline task to the list.
+     * Prints and returns the result of adding a Deadline task to the list.
      * @param newDeadline The Deadline task that has been added.
      * @param count The number of tasks in the list.
      */
@@ -168,7 +168,7 @@ public class Ui {
     }
 
     /**
-     * Prints the result of adding a Event task to the list.
+     * Prints and returns the result of adding a Event task to the list.
      * @param newEvent The Event task that has been added.
      * @param count The number of tasks in the list.
      */
@@ -183,7 +183,7 @@ public class Ui {
     }
 
     /**
-     * Prints the result of deleting the task, including the deleted task and the number of tasks left.
+     * Prints and returns the result of deleting the task, including the deleted task and the number of tasks left.
      * @param removedTask The deleted task from the list.
      * @param count THe number of tasks in the list.
      */
@@ -199,7 +199,7 @@ public class Ui {
     }
 
     /**
-     * Prints the list of tasks after filtering using a keyword.
+     * Prints and returns the list of tasks after filtering using a keyword.
      * @param tasks The filtered list of tasks.
      */
     public String printFilteredTasks(List<Task> tasks) {
