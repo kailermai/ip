@@ -1,7 +1,6 @@
 package angus.ui;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -221,6 +220,11 @@ public class Ui {
         return list.toString();
     }
 
+    /**
+     * Prints and returns the list of events after sorting chronologically
+     * @param taskList The current list of events the user has
+     * @return The string containing the numbered list of events
+     */
     public String printSortedEventList(List<Task> taskList) {
         List<Event> sortedEventList = taskList.stream()
                 .map(t -> (Event) t)
@@ -243,6 +247,11 @@ public class Ui {
         return list.toString();
     }
 
+    /**
+     * Prints and returns the list of deadlines after sorting chronologically
+     * @param taskList The current list of deadlines the user has
+     * @return The string containing the numbered list of deadlines
+     */
     public String printSortedDeadlineList(List<Task> taskList) {
         List<Deadline> sortedDeadlineList = taskList.stream()
                 .map(t -> (Deadline) t)

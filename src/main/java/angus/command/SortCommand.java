@@ -1,7 +1,6 @@
 package angus.command;
 
 import angus.exception.AngusException;
-import angus.task.Task;
 import angus.task.TaskList;
 
 /**
