@@ -44,6 +44,8 @@ public class Storage {
      * @throws AngusException If the local storage file is not found.
      */
     public List<Task> load() throws AngusException {
+        assert filePath != null : "filePath cannot be null";
+        assert filePath.isEmpty() : "filePath cannot be empty";
         try {
             File f = new File(filePath);
             Scanner s = new Scanner(f);

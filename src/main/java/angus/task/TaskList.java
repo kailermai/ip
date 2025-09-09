@@ -57,6 +57,7 @@ public class TaskList {
      * @throws AngusException If the task index is invalid.
      */
     public String markTask(int taskNum) throws AngusException {
+        assert taskList != null : "taskList should not be null";
         if (taskNum >= taskList.toArray().length) {
             throw new AngusException("Task does not exist!"
                     + Ui.LINE_BREAK
@@ -73,6 +74,7 @@ public class TaskList {
      * @throws AngusException If the task index is invalid.
      */
     public String unmarkTask(int taskNum) throws AngusException {
+        assert taskList != null : "taskList should not be null";
         if (taskNum >= taskList.toArray().length) {
             throw new AngusException("Task does not exist!"
                     + Ui.LINE_BREAK
@@ -88,6 +90,7 @@ public class TaskList {
      * @param todoName The name of the ToDo.
      */
     public String addTodo(String todoName) {
+        assert taskList != null : "taskList should not be null";
         ToDo newTodo = new ToDo(todoName);
         taskList.add(newTodo);
         return ui.printAddTodo(newTodo, taskList.size());
@@ -99,6 +102,7 @@ public class TaskList {
      * @param endDate The deadline's end date.
      */
     public String addDeadline(String deadlineName, LocalDate endDate) {
+        assert taskList != null : "taskList should not be null";
         Deadline newDeadline = new Deadline(deadlineName, endDate);
         taskList.add(newDeadline);
         return ui.printAddDeadline(newDeadline, taskList.size());
@@ -111,6 +115,7 @@ public class TaskList {
      * @param endDate The end date of the event.
      */
     public String addEvent(String eventName, LocalDate startDate, LocalDate endDate) {
+        assert taskList != null : "taskList should not be null";
         Event newEvent = new Event(eventName, startDate, endDate);
         taskList.add(newEvent);
         return ui.printAddEvent(newEvent, taskList.size());
@@ -122,6 +127,7 @@ public class TaskList {
      * @throws AngusException If the task index does not exist.
      */
     public String deleteTask(int taskNum) throws AngusException {
+        assert taskList != null : "taskList should not be null";
         if (taskNum >= taskList.size()) {
             throw new AngusException("Task does not exist!"
                     + Ui.LINE_BREAK
@@ -138,6 +144,7 @@ public class TaskList {
      * @throws AngusException If the filtered tasks has no tasks.
      */
     public String findTask(String filter) throws AngusException {
+        assert taskList != null : "taskList should not be null";
         List<Task> filteredTasks = this.taskList.stream()
                 .filter(t -> t.getDescription().contains(filter))
                 .collect(Collectors.toList());
