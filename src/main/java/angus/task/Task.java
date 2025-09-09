@@ -15,9 +15,9 @@ public abstract class Task {
      * Enumeration of the supported task types, which are abbreviated.
      */
     public enum TaskTypes {
-        E,
-        T,
-        D,
+        Event,
+        Todo,
+        Deadline,
     }
 
     /**
