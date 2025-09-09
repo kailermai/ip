@@ -21,6 +21,9 @@ public class Deadline extends Task {
         super(description);
         this.endDate = endDate;
     }
+    public LocalDate getEndDate() {
+        return this.endDate;
+    }
 
     @Override
     public String saveTask() {

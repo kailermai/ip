@@ -12,13 +12,13 @@ import angus.task.TaskList;
  */
 public class SortCommand extends Commands {
     private final TaskList tasks;
-    private final Task.TaskTypes sortType;
+    private final String sortType;
 
     /**
      * Constructs an instance of the SortCommand class with a list of tasks
      * @param tasks The current list of tasks the user has
      */
-    public SortCommand(TaskList tasks, Task.TaskTypes sortType) {
+    public SortCommand(TaskList tasks, String sortType) {
         this.tasks = tasks;
         this.sortType = sortType;
     }

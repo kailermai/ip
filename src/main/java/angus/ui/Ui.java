@@ -1,6 +1,7 @@
 package angus.ui;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -220,7 +221,47 @@ public class Ui {
         return list.toString();
     }
 
-    public String printSortedTaskList(List<Task> taskList) {
-        taskWithDeadlinetaskList.sort(task -> task.);
+    public String printSortedEventList(List<Task> taskList) {
+        List<Event> sortedEventList = taskList.stream()
+                .map(t -> (Event) t)
+                .sorted((x, y) -> x.getStartDate().compareTo(y.getStartDate()))
+                .toList();
+
+        Task curTask;
+        StringBuilder list = new StringBuilder();
+        list.append("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < sortedEventList.size(); i++) {
+            curTask = sortedEventList.get(i);
+            list.append(i + 1);
+            list.append(". ");
+            list.append(curTask);
+            if (i < sortedEventList.size() - 1) {
+                list.append(LINE_BREAK); // prevent empty line at the end
+            }
+        }
+        System.out.println(angusResponse(list.toString()));
+        return list.toString();
+    }
+
+    public String printSortedDeadlineList(List<Task> taskList) {
+        List<Deadline> sortedDeadlineList = taskList.stream()
+                .map(t -> (Deadline) t)
+                .sorted((x, y) -> x.getEndDate().compareTo(y.getEndDate()))
+                .toList();
+
+        Task curTask;
+        StringBuilder list = new StringBuilder();
+        list.append("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < sortedDeadlineList.size(); i++) {
+            curTask = sortedDeadlineList.get(i);
+            list.append(i + 1);
+            list.append(". ");
+            list.append(curTask);
+            if (i < sortedDeadlineList.size() - 1) {
+                list.append(LINE_BREAK); // prevent empty line at the end
+            }
+        }
+        System.out.println(angusResponse(list.toString()));
+        return list.toString();
     }
 }

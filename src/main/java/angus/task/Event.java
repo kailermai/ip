@@ -24,6 +24,9 @@ public class Event extends Task {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+    public LocalDate getStartDate() {
+        return this.startDate;
+    }
 
     @Override
     public String saveTask() {

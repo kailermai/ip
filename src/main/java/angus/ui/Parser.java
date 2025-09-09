@@ -225,8 +225,7 @@ public class Parser {
                         + Ui.LINE_BREAK
                         + "Usage: sort deadline OR sort event");
             }
-            Task.TaskTypes sortType = Task.TaskTypes.valueOf(commandList[1]);
-            return new SortCommand(tasks, sortType);
+            return new SortCommand(tasks, commandList[1]);
         default:
             throw new IllegalArgumentException();
         }

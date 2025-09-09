@@ -45,7 +45,7 @@ public class Storage {
      */
     public List<Task> load() throws AngusException {
         assert filePath != null : "filePath cannot be null";
-        assert filePath.isEmpty() : "filePath cannot be empty";
+        assert !filePath.isEmpty() : "filePath cannot be empty";
         try {
             File f = new File(filePath);
             Scanner s = new Scanner(f);
@@ -55,14 +55,14 @@ public class Storage {
                 String[] taskDetails = curTask.split("//");
                 Task.TaskTypes taskType = Task.TaskTypes.valueOf(taskDetails[0]);
                 switch (taskType) {
-                case Todo:
+                case T:
                     ToDo toDo = new ToDo(taskDetails[2]);
                     if (taskDetails[1].equals("1")) {
                         toDo.markDone();
                     }
                     tmp.add(toDo);
                     break;
-                case Deadline:
+                case D:
                     LocalDate dateTime = LocalDate.parse(taskDetails[3], Parser.FORMATTER_FROM);
                     Deadline deadline = new Deadline(taskDetails[2], dateTime);
                     if (taskDetails[1].equals("1")) {
@@ -70,7 +70,7 @@ public class Storage {
                     }
                     tmp.add(deadline);
                     break;
-                case Event:
+                case E:
                     LocalDate formattedStartDate = LocalDate.parse(taskDetails[3], Parser.FORMATTER_FROM);
                     LocalDate formattedEndDate = LocalDate.parse(taskDetails[4], Parser.FORMATTER_FROM);
                     Event event = new Event(taskDetails[2], formattedStartDate, formattedEndDate);
