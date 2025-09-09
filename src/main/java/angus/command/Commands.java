@@ -21,7 +21,8 @@ public abstract class Commands {
         deadline,
         event,
         delete,
-        find
+        find,
+        sort
     }
 
     public abstract String execute() throws AngusException;

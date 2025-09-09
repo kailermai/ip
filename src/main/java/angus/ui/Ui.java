@@ -221,5 +221,6 @@ public class Ui {
     }
 
     public String printSortedTaskList(List<Task> taskList) {
+        taskWithDeadlinetaskList.sort(task -> task.);
     }
 }

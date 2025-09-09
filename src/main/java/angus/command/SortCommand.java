@@ -11,18 +11,20 @@ import angus.task.TaskList;
  */
 public class SortCommand extends Commands {
     private final TaskList tasks;
+    private final String sortType;
 
     /**
      * Constructs an instance of the SortCommand class with a list of tasks
      * @param tasks The current list of tasks the user has
      */
-    public SortCommand(TaskList tasks) {
+    public SortCommand(TaskList tasks, String sortType) {
         this.tasks = tasks;
+        this.sortType = sortType;
     }
 
     @Override
     public String execute() throws AngusException {
-        return tasks.getSortedList();
+        return tasks.getSortedList(sortType);
     }
 
     @Override
