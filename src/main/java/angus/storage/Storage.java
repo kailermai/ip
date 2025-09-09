@@ -55,14 +55,14 @@ public class Storage {
                 String[] taskDetails = curTask.split("//");
                 Task.TaskTypes taskType = Task.TaskTypes.valueOf(taskDetails[0]);
                 switch (taskType) {
-                case T:
+                case Todo:
                     ToDo toDo = new ToDo(taskDetails[2]);
                     if (taskDetails[1].equals("1")) {
                         toDo.markDone();
                     }
                     tmp.add(toDo);
                     break;
-                case D:
+                case Deadline:
                     LocalDate dateTime = LocalDate.parse(taskDetails[3], Parser.FORMATTER_FROM);
                     Deadline deadline = new Deadline(taskDetails[2], dateTime);
                     if (taskDetails[1].equals("1")) {
@@ -70,7 +70,7 @@ public class Storage {
                     }
                     tmp.add(deadline);
                     break;
-                case E:
+                case Event:
                     LocalDate formattedStartDate = LocalDate.parse(taskDetails[3], Parser.FORMATTER_FROM);
                     LocalDate formattedEndDate = LocalDate.parse(taskDetails[4], Parser.FORMATTER_FROM);
                     Event event = new Event(taskDetails[2], formattedStartDate, formattedEndDate);
