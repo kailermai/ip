@@ -42,10 +42,9 @@ public abstract class Task {
     public boolean markDone() {
         if (this.isDone) {
             return false;
-        } else {
-            this.isDone = true;
-            return true;
         }
+        this.isDone = true;
+        return true;
     }
 
     /**
@@ -53,12 +52,11 @@ public abstract class Task {
      * @return true if the task was successfully unmarked, otherwise false.
      */
     public boolean markNotDone() {
-        if (!this.isDone) {
-            return false;
-        } else {
+        if (this.isDone) {
             this.isDone = false;
             return true;
         }
+        return false;
     }
 
     public String getStatusIcon() {
