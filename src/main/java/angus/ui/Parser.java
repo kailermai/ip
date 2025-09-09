@@ -11,6 +11,7 @@ import angus.command.EventCommand;
 import angus.command.FindCommand;
 import angus.command.ListCommand;
 import angus.command.MarkCommand;
+import angus.command.SortCommand;
 import angus.command.TodoCommand;
 import angus.command.UnmarkCommand;
 import angus.exception.AngusException;
@@ -217,6 +218,13 @@ public class Parser {
             }
             return new FindCommand(tasks, commandList[1]);
             // no break because return prevents fallthrough
+        case sort:
+            if (commandList.length != 2) {
+                throw new AngusException("Wrong usage of sort!"
+                        + Ui.LINE_BREAK
+                        + "Usage: sort deadline OR sort event");
+            }
+            return new SortCommand(tasks, commandList[1]);
         default:
             throw new IllegalArgumentException();
         }

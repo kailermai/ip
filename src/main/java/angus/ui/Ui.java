@@ -219,4 +219,58 @@ public class Ui {
         System.out.println(angusResponse(list.toString()));
         return list.toString();
     }
+
+    /**
+     * Prints and returns the list of events after sorting chronologically
+     * @param taskList The current list of events the user has
+     * @return The string containing the numbered list of events
+     */
+    public String printSortedEventList(List<Task> taskList) {
+        List<Event> sortedEventList = taskList.stream()
+                .map(t -> (Event) t)
+                .sorted((x, y) -> x.getStartDate().compareTo(y.getStartDate()))
+                .toList();
+
+        Task curTask;
+        StringBuilder list = new StringBuilder();
+        list.append("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < sortedEventList.size(); i++) {
+            curTask = sortedEventList.get(i);
+            list.append(i + 1);
+            list.append(". ");
+            list.append(curTask);
+            if (i < sortedEventList.size() - 1) {
+                list.append(LINE_BREAK); // prevent empty line at the end
+            }
+        }
+        System.out.println(angusResponse(list.toString()));
+        return list.toString();
+    }
+
+    /**
+     * Prints and returns the list of deadlines after sorting chronologically
+     * @param taskList The current list of deadlines the user has
+     * @return The string containing the numbered list of deadlines
+     */
+    public String printSortedDeadlineList(List<Task> taskList) {
+        List<Deadline> sortedDeadlineList = taskList.stream()
+                .map(t -> (Deadline) t)
+                .sorted((x, y) -> x.getEndDate().compareTo(y.getEndDate()))
+                .toList();
+
+        Task curTask;
+        StringBuilder list = new StringBuilder();
+        list.append("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < sortedDeadlineList.size(); i++) {
+            curTask = sortedDeadlineList.get(i);
+            list.append(i + 1);
+            list.append(". ");
+            list.append(curTask);
+            if (i < sortedDeadlineList.size() - 1) {
+                list.append(LINE_BREAK); // prevent empty line at the end
+            }
+        }
+        System.out.println(angusResponse(list.toString()));
+        return list.toString();
+    }
 }
