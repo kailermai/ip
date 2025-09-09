@@ -51,6 +51,7 @@ public class Angus {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
+        assert input != null : "input string cannot be null";
         try {
             Commands c = parser.parse(input);
             boolean isExit = c.isExit();
