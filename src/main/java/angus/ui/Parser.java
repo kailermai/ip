@@ -51,6 +51,9 @@ public class Parser {
      * @throws AngusException If the command is invalid.
      */
     public Commands parse(String fullCommand) throws AngusException {
+        assert ui != null : "ui should not be null";
+        assert tasks != null : "tasks should not be null";
+        assert storage != null : "storage should not be null";
         String[] commandList = fullCommand.split(" ");
         Commands.CommandList mainCommand = Commands.CommandList.valueOf(commandList[0]);
         int taskNum;
