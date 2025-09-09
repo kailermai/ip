@@ -3,6 +3,7 @@ package angus.task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import angus.exception.AngusException;
 import angus.ui.Ui;
@@ -146,7 +147,7 @@ public class TaskList {
         assert taskList != null : "taskList should not be null";
         List<Task> filteredTasks = this.taskList.stream()
                 .filter(t -> t.getDescription().contains(filter))
-                .toList();
+                .collect(Collectors.toList());
         if (filteredTasks.isEmpty()) {
             throw new AngusException("There is no task with the matching keyword!");
         }
