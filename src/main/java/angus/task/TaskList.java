@@ -153,4 +153,11 @@ public class TaskList {
         }
         return ui.printFilteredTasks(filteredTasks);
     }
+
+    public String getSortedList() throws AngusException {
+        if (taskList.isEmpty()) {
+            throw new AngusException("Your task list is empty!");
+        }
+        return ui.printSortedTaskList(this.taskList);
+    }
 }
