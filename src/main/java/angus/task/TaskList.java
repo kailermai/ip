@@ -154,10 +154,25 @@ public class TaskList {
         return ui.printFilteredTasks(filteredTasks);
     }
 
-    public String getSortedList() throws AngusException {
+    public String getSortedList(Task.TaskTypes sortType) throws AngusException {
         if (taskList.isEmpty()) {
             throw new AngusException("Your task list is empty!");
         }
-        return ui.printSortedTaskList(this.taskList);
+        switch (sortType) {
+        case Todo:
+            throw new AngusException("Todo cannot be sorted!");
+        case Event:
+            List<Task> eventList = taskList.stream()
+                    .filter(t -> t instanceof Event)
+                    .toList();
+            return ui.printSortedTaskList(eventList);
+        case Deadline:
+            List<Task> deadlineList = taskList.stream()
+                    .filter(t -> t instanceof Deadline)
+                    .toList();
+            return ui.printSortedTaskList(deadlineList);
+        default:
+            throw new AngusException("Unknown error occurred!");
+        }
     }
 }

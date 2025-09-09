@@ -16,6 +16,7 @@ import angus.command.TodoCommand;
 import angus.command.UnmarkCommand;
 import angus.exception.AngusException;
 import angus.storage.Storage;
+import angus.task.Task;
 import angus.task.TaskList;
 
 /**
@@ -224,7 +225,8 @@ public class Parser {
                         + Ui.LINE_BREAK
                         + "Usage: sort deadline OR sort event");
             }
-            return new SortCommand(tasks, commandList[1]);
+            Task.TaskTypes sortType = Task.TaskTypes.valueOf(commandList[1]);
+            return new SortCommand(tasks, sortType);
         default:
             throw new IllegalArgumentException();
         }
