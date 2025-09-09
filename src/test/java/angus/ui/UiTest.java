@@ -6,7 +6,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,9 +30,9 @@ public class UiTest {
         ui.printGreetingsMessage();
         String expected = """
                 \t____________________________________________________________
-                \tHello! I'm Angus o_O
-                \tWhat can I do for you today?
-                \t____________________________________________________________""" + System.lineSeparator();
+                Hello! I'm Angus o_O
+                What can I do for you today?
+                ____________________________________________________________""" + System.lineSeparator();
         assertEquals(expected, outputStream.toString());
     }
     @Test
@@ -41,8 +40,8 @@ public class UiTest {
         ui.printGoodbyeMessage();
         String expected = """
                 \t____________________________________________________________
-                \tGoodbye. Hope to see you again soon!
-                \t____________________________________________________________""" + System.lineSeparator();
+                Goodbye. Hope to see you again soon!
+                ____________________________________________________________""" + System.lineSeparator();
         assertEquals(expected, outputStream.toString());
     }
 }

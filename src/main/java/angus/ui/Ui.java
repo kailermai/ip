@@ -12,6 +12,7 @@ import angus.task.ToDo;
 
 /**
  * Handles interaction with the user through printing to the console and returning to GUI.
+ * Handles interaction with the user through printing to the console and returning to GUI.
  */
 public class Ui {
     public static final String LINE_BREAK = "\n";
