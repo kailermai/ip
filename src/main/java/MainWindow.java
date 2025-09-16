@@ -32,6 +32,9 @@ public class MainWindow extends AnchorPane {
     /** Injects the Angus instance */
     public void setAngus(Angus d) {
         angus = d;
+        dialogContainer.getChildren().add(
+                DialogBox.getAngusDialog(angus.getGreetingsMessage(), angusImage)
+        );
     }
 
     /**
