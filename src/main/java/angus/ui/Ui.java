@@ -193,7 +193,7 @@ public class Ui {
                 + LINE_BREAK
                 + "\t" + removedTask
                 + LINE_BREAK
-                + "You now have " + count + " tasks in the list";
+                + "You now have " + count + " tasks in your list";
 
         System.out.println(angusResponse(message));
         return message;
@@ -233,7 +233,7 @@ public class Ui {
 
         Task curTask;
         StringBuilder list = new StringBuilder();
-        list.append("Here are the matching tasks in your list:\n");
+        list.append("Here is your sorted list of events:\n");
         for (int i = 0; i < sortedEventList.size(); i++) {
             curTask = sortedEventList.get(i);
             list.append(i + 1);
@@ -260,7 +260,7 @@ public class Ui {
 
         Task curTask;
         StringBuilder list = new StringBuilder();
-        list.append("Here are the matching tasks in your list:\n");
+        list.append("Here is your sorted list of deadlines:\n");
         for (int i = 0; i < sortedDeadlineList.size(); i++) {
             curTask = sortedDeadlineList.get(i);
             list.append(i + 1);
