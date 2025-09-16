@@ -3,6 +3,15 @@
 
 Angus is a desktop application that allows you to manage your tasks through simple command line instructions on a Graphical User Interface (GUI). Tasks are categorised into todos, deadlines and events.
 
+# Quick start
+1. Ensure you have Java `17` or above installed in your computer.
+2. Download the latest jar from GitHub releases.
+3. Open a command terminal, `cd` into the folder of the jar file, and run `java -jar "angus.jar"`.
+
+Note that a directory called `data` will be created on launching the chatbot, which is used to store your data in a text file named `Angus.txt`.
+
+# Features
+
 ## Adding todos: `todo`
 Adds a todo task to your task list with the specified name.
 
