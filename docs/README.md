@@ -41,7 +41,7 @@ You now have 2 tasks in the list
 ```
 
 ## Adding events: `event`
-Adds a event task to your task list with the specified name, start date and end date.
+Adds an event task to your task list with the specified name, start date and end date.
 
 Format: `event TASKNAME /from YYYY-MM-DD /to YYYY-MM-DD`
 
