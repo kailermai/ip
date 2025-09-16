@@ -21,7 +21,7 @@ public class Angus {
      * Default constructor for JavaFX
      */
     public Angus() {
-        this.storage = new Storage("data/Angus.txt");
+        this.storage = new Storage("./data/Angus.txt");
         this.ui = new Ui();
         try {
             this.tasks = new TaskList(ui, storage.load());
