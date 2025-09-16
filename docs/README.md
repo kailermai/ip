@@ -1,30 +1,40 @@
-# Duke User Guide
+# Angus User Guide
+![Screenshot of Angus GUI](Ui.png)
 
-// Update the title above to match the actual product name
+Angus is a desktop application that allows you to manage your tasks through simple command line instructions on a Graphical User Interface (GUI). Tasks are categorised into todos, deadlines and events.
 
-// Product screenshot goes here
+## Adding todos: `todo`
+Adds a todo task to your task list with the specified name.
 
-// Product intro goes here
+Format: `todo TASKNAME`
 
-## Adding deadlines
+- Creates a new todo task with the name `TASKNAME`
 
-// Describe the action and its outcome.
+Example: 
+`todo Study for quiz`
 
-// Give examples of usage
-
-Example: `keyword (optional arguments)`
-
-// A description of the expected outcome goes here
+Angus will respond with an acknowledgment of the todo added.
 
 ```
-expected output
+Angus has added this task:
+    [T][] Study for quiz
+You now have 1 tasks in the list
 ```
 
-## Feature ABC
+## Adding deadlines: `deadline`
 
-// Feature details
+## Adding events: `event`
 
+## Listing your tasks: `list`
 
-## Feature XYZ
+## Marking task as done: `mark`
 
-// Feature details
+## Marking task as not done: `unmark`
+
+## Finding tasks by name: `find`
+
+## Sorting tasks: `sort`
+
+## Deleting a task: `delete`
+
+## Exiting the program: `bye`
