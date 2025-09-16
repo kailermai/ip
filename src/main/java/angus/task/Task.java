@@ -33,6 +33,11 @@ public abstract class Task {
     public String getDescription() {
         return this.description;
     }
+
+    /**
+     * Converts the content of the task to a string for saving.
+     * @return The string version of the task.
+     */
     public abstract String saveTask();
 
     /**

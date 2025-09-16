@@ -25,6 +25,19 @@ public abstract class Commands {
         sort
     }
 
+    /**
+     * Executes the given command when called.
+     *
+     * @return Result from executing the command.
+     * @throws AngusException If command cannot be executed.
+     */
     public abstract String execute() throws AngusException;
+
+    /**
+     * Defines whether a command is an exit command.
+     * <p>
+     * An exit command is defined as a command that will lead to closing the program.
+     * @return Whether the command is an exit command.
+     */
     public abstract boolean isExit();
 }

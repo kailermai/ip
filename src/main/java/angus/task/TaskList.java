@@ -154,6 +154,12 @@ public class TaskList {
         return ui.printFilteredTasks(filteredTasks);
     }
 
+    /**
+     * Sorts the list based on either by deadlines or events, and return the result
+     * @param filter The type of task to sort by.
+     * @return The result from sorting the list.
+     * @throws AngusException If trying to sort an empty list or sort todo.
+     */
     public String getSortedList(String filter) throws AngusException {
         if (taskList.isEmpty()) {
             throw new AngusException("Your task list is empty!");
