@@ -33,6 +33,14 @@ public class ToDoTest {
         assertEquals("[X]", toDo.getStatusIcon());
     }
     @Test
+    public void getStatusIcon_unmarkingCompletedTask_success() {
+        ToDo toDo = new ToDo("Test");
+        toDo.markDone();
+        assertEquals("[X]", toDo.getStatusIcon());
+        toDo.markNotDone();
+        assertEquals("[ ]", toDo.getStatusIcon());
+    }
+    @Test
     public void testStringConversion() {
         ToDo toDo = new ToDo("Test");
         assertEquals("[T][ ] Test", toDo.toString());
