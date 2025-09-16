@@ -56,28 +56,13 @@ public class Storage {
                 Task.TaskTypes taskType = Task.TaskTypes.valueOf(taskDetails[0]);
                 switch (taskType) {
                 case T:
-                    ToDo toDo = new ToDo(taskDetails[2]);
-                    if (taskDetails[1].equals("1")) {
-                        toDo.markDone();
-                    }
-                    tmp.add(toDo);
+                    loadTodo(taskDetails, tmp);
                     break;
                 case D:
-                    LocalDate dateTime = LocalDate.parse(taskDetails[3], Parser.FORMATTER_FROM);
-                    Deadline deadline = new Deadline(taskDetails[2], dateTime);
-                    if (taskDetails[1].equals("1")) {
-                        deadline.markDone();
-                    }
-                    tmp.add(deadline);
+                    loadDeadline(taskDetails, tmp);
                     break;
                 case E:
-                    LocalDate formattedStartDate = LocalDate.parse(taskDetails[3], Parser.FORMATTER_FROM);
-                    LocalDate formattedEndDate = LocalDate.parse(taskDetails[4], Parser.FORMATTER_FROM);
-                    Event event = new Event(taskDetails[2], formattedStartDate, formattedEndDate);
-                    if (taskDetails[1].equals("1")) {
-                        event.markDone();
-                    }
-                    tmp.add(event);
+                    loadEvent(taskDetails, tmp);
                     break;
                 default:
                     throw new AngusException("Unknown Error while creating task!");
@@ -87,6 +72,33 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new AngusException("No save data found! Generating a new save...");
         }
+    }
+
+    private static void loadEvent(String[] taskDetails, List<Task> tmp) {
+        LocalDate formattedStartDate = LocalDate.parse(taskDetails[3], Parser.FORMATTER_FROM);
+        LocalDate formattedEndDate = LocalDate.parse(taskDetails[4], Parser.FORMATTER_FROM);
+        Event event = new Event(taskDetails[2], formattedStartDate, formattedEndDate);
+        if (taskDetails[1].equals("1")) {
+            event.markDone();
+        }
+        tmp.add(event);
+    }
+
+    private static void loadDeadline(String[] taskDetails, List<Task> tmp) {
+        LocalDate dateTime = LocalDate.parse(taskDetails[3], Parser.FORMATTER_FROM);
+        Deadline deadline = new Deadline(taskDetails[2], dateTime);
+        if (taskDetails[1].equals("1")) {
+            deadline.markDone();
+        }
+        tmp.add(deadline);
+    }
+
+    private static void loadTodo(String[] taskDetails, List<Task> tmp) {
+        ToDo toDo = new ToDo(taskDetails[2]);
+        if (taskDetails[1].equals("1")) {
+            toDo.markDone();
+        }
+        tmp.add(toDo);
     }
 
     /**
