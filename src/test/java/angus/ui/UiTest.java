@@ -9,8 +9,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-
 public class UiTest {
     // Solution below inspired by
     // https://www.geeksforgeeks.org/advance-java/unit-testing-of-system-out-println-with-junit/

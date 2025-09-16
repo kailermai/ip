@@ -57,8 +57,6 @@ public class Parser {
         assert storage != null : "storage should not be null";
         String[] commandList = fullCommand.split(" ");
         Commands.CommandList mainCommand = Commands.CommandList.valueOf(commandList[0]);
-        int taskNum;
-        StringBuilder endDate;
         switch (mainCommand) {
         case bye:
             return new ByeCommand(ui, storage, tasks);
