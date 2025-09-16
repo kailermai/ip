@@ -66,4 +66,8 @@ public class Angus {
             return ui.printError(e.getMessage());
         }
     }
+
+    public String getGreetingsMessage() {
+        return ui.printGreetingsMessage();
+    }
 }
