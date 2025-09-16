@@ -27,7 +27,7 @@ public class TaskList {
     }
 
     /**
-     * Created a TaskList with an existing list of tasks.
+     * Creates a TaskList with an existing list of tasks.
      * @param ui The user interface to interact with the user.
      * @param taskList The provided list of existing tasks to initialize with.
      */

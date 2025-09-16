@@ -90,7 +90,7 @@ public class Storage {
     }
 
     /**
-     * Save all tasks in the given TaskList to the local storage file.
+     * Saves all tasks in the given TaskList to the local storage file.
      * <p>
      * Each task is saved in a serialised format, with each field separated by //.
      * @param tasks The current list of task the user has.
