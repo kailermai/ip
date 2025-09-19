@@ -34,6 +34,9 @@ public class EventCommand extends Commands {
 
     @Override
     public String execute() throws AngusException {
+        if (startDate.isAfter(endDate)) {
+            throw new AngusException("End date cannot be before start date!");
+        }
         return tasks.addEvent(eventName, startDate, endDate);
     }
 

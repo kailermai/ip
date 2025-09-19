@@ -25,6 +25,9 @@ public class UnmarkCommand extends Commands {
 
     @Override
     public String execute() throws AngusException {
+        if (taskNum < 0) {
+            throw new AngusException("Task number must be a positive integer!");
+        }
         return tasks.unmarkTask(taskNum);
     }
 
