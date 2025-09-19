@@ -8,7 +8,7 @@ Angus is a desktop application that allows you to manage your tasks through simp
 2. Download the latest jar from GitHub releases.
 3. Open a command terminal, `cd` into the folder of the jar file, and run `java -jar "angus.jar"`.
 
-Note that a directory called `data` will be created on launching the chatbot, which is used to store your data in a text file named `Angus.txt`.
+Note that a directory called `data` will be created on launching the chatbot, which is used to store your data in a text file named `Angus.txt`. To save your tasks, you ***MUST*** use the `bye` command to close the program.
 
 # Features
 
