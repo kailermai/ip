@@ -31,6 +31,9 @@ public class DeadlineCommand extends Commands {
 
     @Override
     public String execute() throws AngusException {
+        if (this.endDate.isBefore(LocalDate.now())) {
+            throw new AngusException("Deadline cannot be before today!");
+        }
         return tasks.addDeadline(deadlineName, endDate);
     }
 
